@@ -1798,10 +1798,28 @@ function renderActivityForHour(activity) {
     }
     
     const speakerText = activity.speaker ? `<div class="activity-speaker">${activity.speaker}</div>` : '';
+    
+    // Calculate Spanish time (UTC+1) display
+    let timeText = '';
+    if (activity.startHour !== undefined) {
+        const startTime = `${activity.startHour.toString().padStart(2, '0')}:00`;
+        if (activity.endHour && activity.endHour !== activity.startHour + 1) {
+            const endTime = `${activity.endHour.toString().padStart(2, '0')}:00`;
+            timeText = `${startTime} - ${endTime}`;
+        } else {
+            timeText = startTime;
+        }
+    }
+    
+    const timeDisplay = timeText ? `<div class="activity-time">${timeText}</div>` : '';
+    
     return `
         <div class="activity">
-            <div class="activity-title">${activity.title}</div>
-            ${speakerText}
+            <div class="activity-content">
+                <div class="activity-title">${activity.title}</div>
+                ${speakerText}
+            </div>
+            ${timeDisplay}
         </div>
     `;
 }

@@ -4480,11 +4480,33 @@ section {
     color: #e0e0e0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     text-align: center;
     cursor: pointer;
     transition: none;
+    position: relative;
+}
+
+.activity-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.activity-time {
+    position: absolute;
+    bottom: 0.25rem;
+    right: 0.25rem;
+    font-size: 0.7rem;
+    color: rgba(224, 224, 224, 0.6);
+    font-weight: 500;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 0.15rem 0.3rem;
+    border-radius: 3px;
+    line-height: 1;
 }
 
 .activity:hover {
@@ -4516,6 +4538,11 @@ section {
     color: rgba(240, 249, 255, 0.7);
 }
 
+.week1-quantum .activity-time {
+    color: rgba(59, 130, 246, 0.8);
+    background: rgba(59, 130, 246, 0.15);
+}
+
 /* Week 2 Activities - PURPLE theme (less vivid, more transparent) */
 .week2-quantum .activity {
     background: linear-gradient(135deg, rgba(139, 92, 246, 0.3) 0%, rgba(124, 58, 237, 0.4) 100%);
@@ -4540,6 +4567,11 @@ section {
     color: rgba(250, 245, 255, 0.7);
 }
 
+.week2-quantum .activity-time {
+    color: rgba(139, 92, 246, 0.8);
+    background: rgba(139, 92, 246, 0.15);
+}
+
 /* Week 3 Activities - GOLD theme (less vivid, more transparent) */
 .week3-quantum .activity {
     background: linear-gradient(135deg, rgba(245, 158, 11, 0.3) 0%, rgba(217, 119, 6, 0.4) 100%);
@@ -4562,6 +4594,11 @@ section {
 
 .week3-quantum .activity-speaker {
     color: rgba(255, 251, 235, 0.7);
+}
+
+.week3-quantum .activity-time {
+    color: rgba(245, 158, 11, 0.8);
+    background: rgba(245, 158, 11, 0.15);
 }
 
 /* Halloween Activities - GOLD theme (same as week 3) */
@@ -4590,6 +4627,12 @@ section {
 .halloween .activity-speaker,
 .day-column[data-date="2025-10-31"] .activity-speaker {
     color: rgba(255, 251, 235, 0.7) !important;
+}
+
+.halloween .activity-time,
+.day-column[data-date="2025-10-31"] .activity-time {
+    color: rgba(245, 158, 11, 0.8) !important;
+    background: rgba(245, 158, 11, 0.15) !important;
 }
 
 .activity-title {
