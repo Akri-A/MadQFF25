@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MadQFF'25</title>
+    
+    <!-- IMPORTANT: IF WE DO NOT HAVE THE RIGHT FOR ALL THE LOGOS, SET IT TO FALSE -->
+    <script> const WE_HAVE_RIGHTS_FOR_ALL_THE_LOGOS = false; </script>
+
     <link rel="icon" type="image/png" href="Fall Fest Graphics/Emojis/Entanglement.png">
     <link rel="shortcut icon" type="image/png" href="Fall Fest Graphics/Emojis/Entanglement.png">
     <link rel="apple-touch-icon" href="Fall Fest Graphics/Emojis/Entanglement.png">
@@ -23,6 +27,7 @@
             </div>
             <div class="nav-links">
                 <a href="#home" class="nav-link">Home</a>
+                <a href="#sponsors" class="nav-link">Sponsors</a>
                 <a href="#what-is-qff" class="nav-link">What is QFF?</a>
                 <a href="#about" class="nav-link">About</a>
                 <a href="#calendar" class="nav-link">Calendar</a>
@@ -107,7 +112,7 @@
                     </div>
                     <div class="feature-item">
                         <i class="fas fa-trophy"></i>
-                        <span>Prizes & Awards</span>
+                        <span>Challenge Awards</span>
                     </div>
                     <div class="feature-item">
                         <i class="fas fa-globe"></i>
@@ -146,6 +151,65 @@
         </div>
     </section>
 
+    <!-- Sponsors & Partners Section -->
+    <section id="sponsors" class="sponsors-section">
+        <div class="container">
+            <div class="sponsors-grid">
+                <!-- Logo versions (shown when SHOW_SPONSOR_LOGOS = true) -->
+                <div class="sponsor-item logo-version">
+                    <img src="logos/IBM Quantum Logo.png" alt="IBM Quantum" class="sponsor-logo">
+                </div>
+                <div class="sponsor-item logo-version">
+                    <img src="logos/kipu.png" alt="Kipu Quantum" class="sponsor-logo">
+                </div>
+                <div class="sponsor-item logo-version">
+                    <img src="logos/qworld.png" alt="QWorld" class="sponsor-logo">
+                </div>
+                <div class="sponsor-item logo-version">
+                    <img src="logos/pasqal.png" alt="Pasqal" class="sponsor-logo">
+                </div>
+                <div class="sponsor-item logo-version">
+                    <img src="logos/sparrow.png" alt="Sparrow Quantum" class="sponsor-logo">
+                </div>
+                <div class="sponsor-item logo-version">
+                    <img src="logos/imdeaSofware.png" alt="IMDEA Software" class="sponsor-logo">
+                </div>
+                <div class="sponsor-item logo-version">
+                    <img src="logos/icmm.png" alt="ICMM" class="sponsor-logo">
+                </div>
+                <div class="sponsor-item logo-version">
+                    <img src="logos/iff.png" alt="IFF" class="sponsor-logo">
+                </div>
+
+                <!-- Text versions (shown when SHOW_SPONSOR_LOGOS = false) -->
+                <div class="sponsor-item text-version" style="display: none;">
+                    <span class="sponsor-text">IBM Quantum</span>
+                </div>
+                <div class="sponsor-item text-version" style="display: none;">
+                    <span class="sponsor-text">Kipu Quantum</span>
+                </div>
+                <div class="sponsor-item text-version" style="display: none;">
+                    <span class="sponsor-text">QWorld</span>
+                </div>
+                <div class="sponsor-item text-version" style="display: none;">
+                    <span class="sponsor-text">Pasqal</span>
+                </div>
+                <div class="sponsor-item text-version" style="display: none;">
+                    <span class="sponsor-text">Sparrow Quantum</span>
+                </div>
+                <div class="sponsor-item text-version" style="display: none;">
+                    <span class="sponsor-text">IMDEA Software</span>
+                </div>
+                <div class="sponsor-item text-version" style="display: none;">
+                    <span class="sponsor-text">ICMM</span>
+                </div>
+                <div class="sponsor-item text-version" style="display: none;">
+                    <span class="sponsor-text">IFF</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- What is Qiskit Fall Fest Section -->
     <section id="what-is-qff" class="what-is-qff">
         <div class="container">
@@ -164,15 +228,8 @@
                             Each Fall Fest event is organized by a local community with support from IBM Quantum Network members and Qiskit Advocates. These events are designed to be welcoming spaces for quantum enthusiasts to come together, learn, and explore the fascinating world of quantum computing.
                         </p>
                         
-                        <!-- Official Partners -->
-                        <div class="official-partners">
-                            <div class="partner-label">madqff'25 contributors making this event possible:</div>
-                            <div class="partner-logos">
-                                <div class="partner-logo">
-                                    <img src="Fall Fest Graphics/Illustration Exports/IBM Quantum Logo.png" alt="IBM Quantum" class="ibm-logo">
-                                </div>
-                            </div>
-                        </div>
+                        
+
                     </div>
                     
                     <!-- Visual Element -->
@@ -254,11 +311,31 @@
                         <span>Program Overview</span>
                     </div>
                     <h2 class="about-title">
-                        Our <span class="highlight-text">3-Week Quantum Journey</span>
+                        Our <span class="highlight-text">3-Section Quantum Journey</span>
                     </h2>
                     <p class="about-description">
                         Experience quantum computing through a progressive learning adventure at Universidad Autónoma de Madrid. From foundations to advanced applications, each week builds upon the previous to create a comprehensive quantum education experience.
                     </p>
+                </div>
+
+                                <div class="calendar-intro">
+                    <h2 class="calendar-title">
+                    </h2>
+                    <!-- Interactive Calendar Stats -->
+                    <div class="calendar-stats">
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="21">0</div>
+                            <div class="stat-label">Days of Quantum</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="15">0</div>
+                            <div class="stat-label">Expert Sessions</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="3">0</div>
+                            <div class="stat-label">Intensive Weeks</div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Enhanced Week Cards -->
@@ -271,7 +348,7 @@
                             </div>
                         </div>
                         <div class="week-content">
-                            <h3>Week 1: Foundations</h3>
+                            <h3>Section 1: Foundations</h3>
                             <p>Start your quantum journey with introductory sessions perfect for beginners. Learn the fundamentals of quantum computing, basic mathematics, and get hands-on with Qiskit programming for the first time.</p>
                             <div class="week-highlights">
                                 <div class="highlight-tag">Beginner-Friendly</div>
@@ -288,7 +365,7 @@
                             </div>
                         </div>
                         <div class="week-content">
-                            <h3>Week 2: Insights</h3>
+                            <h3>Section 2: Insights</h3>
                             <p>Dive deeper with expert TEDx-style talks and cutting-edge research presentations. Discover industry applications, hardware innovations, and the future of quantum technology from leading researchers.</p>
                             <div class="week-highlights">
                                 <div class="highlight-tag">Expert Talks</div>
@@ -305,7 +382,7 @@
                             </div>
                         </div>
                         <div class="week-content">
-                            <h3>Week 3: Hackathons & Challenges</h3>
+                            <h3>Section 3: Hackathons & Challenges</h3>
                             <p>Put your knowledge to the test with hands-on challenges and algorithm competitions (and if you win, you might win some prizes :) ).</p>
                             <div class="week-highlights">
                                 <div class="highlight-tag">Competition</div>
@@ -321,71 +398,297 @@
 
     <!-- Calendar Section -->
     <section id="calendar" class="calendar-section">
+        <!-- Quantum Background Effects -->
+        <div class="quantum-calendar-bg">
+            <div class="quantum-particles-calendar"></div>
+            <div class="quantum-waves"></div>
+            <div class="circuit-patterns"></div>
+        </div>
+        
         <div class="container">
             <div class="calendar-content">
-                <!-- Enhanced Section Header -->
-                <div class="calendar-intro">
-                    <div class="section-badge">
-                        <i class="fas fa-calendar-alt"></i>
-                        <span>Event Schedule</span>
-                    </div>
-                    <h2 class="calendar-title">
-                        <span class="highlight-text">Festival Calendar</span>
-                    </h2>
-                    <p class="calendar-description">
-                        Complete schedule for our 3-week quantum computing festival. Mark your calendar and don't miss any of the exciting sessions, talks, and competitions.
-                    </p>
-                </div>
-
-                <!-- Work in Progress Warning -->
-                <div class="wip-notice">
-                    <div class="wip-icon">
-                        <i class="fas fa-tools"></i>
-                    </div>
-                    <div class="wip-content">
-                        <h4>🚧 Work in Progress</h4>
-                        <p>We're currently finalizing the detailed schedule and will update this calendar soon with specific session times, speaker information, and registration links. Stay tuned!</p>
-                    </div>
-                    <div class="wip-status">
-                        <div class="status-badge">Coming Soon</div>
-                    </div>
-                </div>
-
-                <div class="calendar-container">
-                    <div class="calendar-tabs">
-                        <button class="calendar-tab active" data-calendar="all">All Events</button>
-                        <button class="calendar-tab" data-calendar="foundations">Week 1: Foundations</button>
-                        <button class="calendar-tab" data-calendar="insights">Week 2: Insights</button>
-                        <button class="calendar-tab" data-calendar="practice">Week 3: Practice</button>
-                        <button class="calendar-tab" data-calendar="special">Special Events</button>
-                    </div>
-                    <div class="calendar-wrapper">
-                        <div id="customCalendar" class="custom-calendar active">
-                            <div class="calendar-header">
-                                <button class="calendar-nav-btn" id="prevMonth">
-                                    <i class="fas fa-chevron-left"></i>
-                                </button>
-                                <h3 class="calendar-month-year" id="currentMonthYear">October 2025</h3>
-                                <button class="calendar-nav-btn" id="nextMonth">
-                                    <i class="fas fa-chevron-right"></i>
-                                </button>
-                            </div>
-                            <div class="calendar-grid">
-                                <div class="calendar-weekdays">
-                                    <div class="weekday">Sun</div>
-                                    <div class="weekday">Mon</div>
-                                    <div class="weekday">Tue</div>
-                                    <div class="weekday">Wed</div>
-                                    <div class="weekday">Thu</div>
-                                    <div class="weekday">Fri</div>
-                                    <div class="weekday">Sat</div>
+                <div class="weekly-calendar-container" id="weekly-view">
+                    <!-- Week 1: Foundations (Oct 27-31) -->
+                    <div class="weekly-calendar-section week1-quantum" data-week="1">
+                        <div class="weekly-grid enhanced-grid">
+                            <div class="day-column quantum-day" data-date="2025-10-27">
+                                <div class="day-header quantum-day-header">
+                                    <div class="day-name">Monday</div>
+                                    <div class="date-number">27</div>
+                                    <div class="day-glow"></div>
                                 </div>
-                                <div class="calendar-days" id="calendarDays">
-                                    <!-- Calendar days will be generated here -->
+                                <div class="hour-slot quantum-slot" id="week1-mon-16" data-time="16:00">
+                                    <div class="time-marker">16:00</div>
+                                </div>
+                                <div class="hour-slot quantum-slot" id="week1-mon-17" data-time="17:00">
+                                    <div class="time-marker">17:00</div>
+                                </div>
+                                <div class="hour-slot quantum-slot" id="week1-mon-18" data-time="18:00">
+                                    <div class="time-marker">18:00</div>
+                                </div>
+                            </div>
+                            <div class="day-column quantum-day" data-date="2025-10-28">
+                                <div class="day-header quantum-day-header">
+                                    <div class="day-name">Tuesday</div>
+                                    <div class="date-number">28</div>
+                                    <div class="day-glow"></div>
+                                </div>
+                                <div class="hour-slot quantum-slot" id="week1-tue-16" data-time="16:00">
+                                    <div class="time-marker">16:00</div>
+                                </div>
+                                <div class="hour-slot quantum-slot" id="week1-tue-17" data-time="17:00">
+                                    <div class="time-marker">17:00</div>
+                                </div>
+                                <div class="hour-slot quantum-slot" id="week1-tue-18" data-time="18:00">
+                                    <div class="time-marker">18:00</div>
+                                </div>
+                            </div>
+                            <div class="day-column quantum-day" data-date="2025-10-29">
+                                <div class="day-header quantum-day-header">
+                                    <div class="day-name">Wednesday</div>
+                                    <div class="date-number">29</div>
+                                    <div class="day-glow"></div>
+                                </div>
+                                <div class="hour-slot quantum-slot" id="week1-wed-16" data-time="16:00">
+                                    <div class="time-marker">16:00</div>
+                                </div>
+                                <div class="hour-slot quantum-slot" id="week1-wed-17" data-time="17:00">
+                                    <div class="time-marker">17:00</div>
+                                </div>
+                                <div class="hour-slot quantum-slot" id="week1-wed-18" data-time="18:00">
+                                    <div class="time-marker">18:00</div>
+                                </div>
+                            </div>
+                            <div class="day-column quantum-day" data-date="2025-10-30">
+                                <div class="day-header quantum-day-header">
+                                    <div class="day-name">Thursday</div>
+                                    <div class="date-number">30</div>
+                                    <div class="day-glow"></div>
+                                </div>
+                                <div class="hour-slot quantum-slot" id="week1-thu-16" data-time="16:00">
+                                    <div class="time-marker">16:00</div>
+                                </div>
+                                <div class="hour-slot quantum-slot" id="week1-thu-17" data-time="17:00">
+                                    <div class="time-marker">17:00</div>
+                                </div>
+                                <div class="hour-slot quantum-slot" id="week1-thu-18" data-time="18:00">
+                                    <div class="time-marker">18:00</div>
+                                </div>
+                            </div>
+                            <div class="day-column quantum-day" data-date="2025-10-31">
+                                <div class="day-header quantum-day-header halloween">
+                                    <div class="day-name">Friday</div>
+                                    <div class="date-number">31</div>
+                                    <div class="halloween-icon">🎃</div>
+                                    <div class="day-glow"></div>
+                                </div>
+                                <div class="hour-slot quantum-slot" id="week1-fri-16" data-time="16:00">
+                                    <div class="time-marker">16:00</div>
+                                </div>
+                                <div class="hour-slot quantum-slot" id="week1-fri-17" data-time="17:00">
+                                    <div class="time-marker">17:00</div>
+                                </div>
+                                <div class="hour-slot quantum-slot" id="week1-fri-18" data-time="18:00">
+                                    <div class="time-marker">18:00</div>
                                 </div>
                             </div>
                         </div>
-                        <!-- Individual node calendars will show the same custom calendar -->
+                    </div>
+
+                    <!-- Week 2: Industry Insights (Nov 3-7) -->
+                    <div class="weekly-calendar-section week2-quantum" data-week="2">
+                        <div class="weekly-grid enhanced-grid">
+                            <div class="day-column quantum-day" data-date="2025-11-03">
+                                <div class="day-header quantum-day-header industry">
+                                    <div class="day-name">Monday</div>
+                                    <div class="date-number">3</div>
+                                    <div class="day-glow"></div>
+                                </div>
+                                <div class="hour-slot quantum-slot" id="week2-mon-16" data-time="16:00">
+                                    <div class="time-marker">16:00</div>
+                                </div>
+                                <div class="hour-slot quantum-slot" id="week2-mon-17" data-time="17:00">
+                                    <div class="time-marker">17:00</div>
+                                </div>
+                                <div class="hour-slot quantum-slot" id="week2-mon-18" data-time="18:00">
+                                    <div class="time-marker">18:00</div>
+                                </div>
+                            </div>
+                            <div class="day-column quantum-day" data-date="2025-11-04">
+                                <div class="day-header quantum-day-header industry">
+                                    <div class="day-name">Tuesday</div>
+                                    <div class="date-number">4</div>
+                                    <div class="day-glow"></div>
+                                </div>
+                                <div class="hour-slot quantum-slot" id="week2-tue-16" data-time="16:00">
+                                    <div class="time-marker">16:00</div>
+                                </div>
+                                <div class="hour-slot quantum-slot" id="week2-tue-17" data-time="17:00">
+                                    <div class="time-marker">17:00</div>
+                                </div>
+                                <div class="hour-slot quantum-slot" id="week2-tue-18" data-time="18:00">
+                                    <div class="time-marker">18:00</div>
+                                </div>
+                            </div>
+                            <div class="day-column quantum-day" data-date="2025-11-05">
+                                <div class="day-header quantum-day-header industry">
+                                    <div class="day-name">Wednesday</div>
+                                    <div class="date-number">5</div>
+                                    <div class="day-glow"></div>
+                                </div>
+                                <div class="hour-slot quantum-slot" id="week2-wed-16" data-time="16:00">
+                                    <div class="time-marker">16:00</div>
+                                </div>
+                                <div class="hour-slot quantum-slot" id="week2-wed-17" data-time="17:00">
+                                    <div class="time-marker">17:00</div>
+                                </div>
+                                <div class="hour-slot quantum-slot" id="week2-wed-18" data-time="18:00">
+                                    <div class="time-marker">18:00</div>
+                                </div>
+                            </div>
+                            <div class="day-column quantum-day" data-date="2025-11-06">
+                                <div class="day-header quantum-day-header industry">
+                                    <div class="day-name">Thursday</div>
+                                    <div class="date-number">6</div>
+                                    <div class="day-glow"></div>
+                                </div>
+                                <div class="hour-slot quantum-slot" id="week2-thu-16" data-time="16:00">
+                                    <div class="time-marker">16:00</div>
+                                </div>
+                                <div class="hour-slot quantum-slot" id="week2-thu-17" data-time="17:00">
+                                    <div class="time-marker">17:00</div>
+                                </div>
+                                <div class="hour-slot quantum-slot" id="week2-thu-18" data-time="18:00">
+                                    <div class="time-marker">18:00</div>
+                                </div>
+                            </div>
+                            <div class="day-column quantum-day" data-date="2025-11-07">
+                                <div class="day-header quantum-day-header industry">
+                                    <div class="day-name">Friday</div>
+                                    <div class="date-number">7</div>
+                                    <div class="day-glow"></div>
+                                </div>
+                                <div class="hour-slot quantum-slot" id="week2-fri-16" data-time="16:00">
+                                    <div class="time-marker">16:00</div>
+                                </div>
+                                <div class="hour-slot quantum-slot" id="week2-fri-17" data-time="17:00">
+                                    <div class="time-marker">17:00</div>
+                                </div>
+                                <div class="hour-slot quantum-slot" id="week2-fri-18" data-time="18:00">
+                                    <div class="time-marker">18:00</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Week 3: Closing Events (Nov 10-14) -->
+                    <div class="weekly-calendar-section week3-quantum" data-week="3">
+                        
+                        <div class="weekly-grid enhanced-grid">
+                            <div class="day-column quantum-day" data-date="2025-11-10">
+                                <div class="day-header quantum-day-header closing">
+                                    <div class="day-name">Monday</div>
+                                    <div class="date-number">10</div>
+                                    <div class="day-glow"></div>
+                                </div>
+                                <div class="hour-slot quantum-slot" id="week3-mon-16" data-time="16:00">
+                                    <div class="time-marker">16:00</div>
+                                </div>
+                                <div class="hour-slot quantum-slot" id="week3-mon-17" data-time="17:00">
+                                    <div class="time-marker">17:00</div>
+                                </div>
+                                <div class="hour-slot quantum-slot" id="week3-mon-18" data-time="18:00">
+                                    <div class="time-marker">18:00</div>
+                                </div>
+                            </div>
+                            <div class="day-column quantum-day" data-date="2025-11-11">
+                                <div class="day-header quantum-day-header closing">
+                                    <div class="day-name">Tuesday</div>
+                                    <div class="date-number">11</div>
+                                    <div class="day-glow"></div>
+                                </div>
+                                <div class="hour-slot quantum-slot" id="week3-tue-16" data-time="16:00">
+                                    <div class="time-marker">16:00</div>
+                                </div>
+                                <div class="hour-slot quantum-slot" id="week3-tue-17" data-time="17:00">
+                                    <div class="time-marker">17:00</div>
+                                </div>
+                                <div class="hour-slot quantum-slot" id="week3-tue-18" data-time="18:00">
+                                    <div class="time-marker">18:00</div>
+                                </div>
+                            </div>
+                            <div class="day-column quantum-day" data-date="2025-11-12">
+                                <div class="day-header quantum-day-header closing">
+                                    <div class="day-name">Wednesday</div>
+                                    <div class="date-number">12</div>
+                                    <div class="day-glow"></div>
+                                </div>
+                                <div class="hour-slot quantum-slot" id="week3-wed-16" data-time="16:00">
+                                    <div class="time-marker">16:00</div>
+                                </div>
+                                <div class="hour-slot quantum-slot" id="week3-wed-17" data-time="17:00">
+                                    <div class="time-marker">17:00</div>
+                                </div>
+                                <div class="hour-slot quantum-slot" id="week3-wed-18" data-time="18:00">
+                                    <div class="time-marker">18:00</div>
+                                </div>
+                            </div>
+                            <div class="day-column quantum-day" data-date="2025-11-13">
+                                <div class="day-header quantum-day-header closing">
+                                    <div class="day-name">Thursday</div>
+                                    <div class="date-number">13</div>
+                                    <div class="day-glow"></div>
+                                </div>
+                                <div class="hour-slot quantum-slot" id="week3-thu-16" data-time="16:00">
+                                    <div class="time-marker">16:00</div>
+                                </div>
+                                <div class="hour-slot quantum-slot" id="week3-thu-17" data-time="17:00">
+                                    <div class="time-marker">17:00</div>
+                                </div>
+                                <div class="hour-slot quantum-slot" id="week3-thu-18" data-time="18:00">
+                                    <div class="time-marker">18:00</div>
+                                </div>
+                            </div>
+                            <div class="day-column quantum-day" data-date="2025-11-14">
+                                <div class="day-header quantum-day-header closing">
+                                    <div class="day-name">Friday</div>
+                                    <div class="date-number">14</div>
+                                    <div class="day-glow"></div>
+                                </div>
+                                <div class="hour-slot quantum-slot" id="week3-fri-16" data-time="16:00">
+                                    <div class="time-marker">16:00</div>
+                                </div>
+                                <div class="hour-slot quantum-slot" id="week3-fri-17" data-time="17:00">
+                                    <div class="time-marker">17:00</div>
+                                </div>
+                                <div class="hour-slot quantum-slot" id="week3-fri-18" data-time="18:00">
+                                    <div class="time-marker">18:00</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event Details Modal -->
+                <div class="event-modal" id="event-modal">
+                    <div class="modal-backdrop"></div>
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title"></h3>
+                            <button class="modal-close">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="event-details">
+                                <div class="event-time"></div>
+                                <div class="event-speaker"></div>
+                                <div class="event-description"></div>
+                                <div class="event-tags"></div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary">Add to Calendar</button>
+                            <button class="btn btn-secondary">Share Event</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -529,6 +832,24 @@
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="script.js"></script>
+
+    <!-- Sponsor Display Control Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const logoVersions = document.querySelectorAll('.sponsor-item.logo-version');
+            const textVersions = document.querySelectorAll('.sponsor-item.text-version');
+            
+            if (WE_HAVE_RIGHTS_FOR_ALL_THE_LOGOS) {
+                // Show logos, hide text
+                logoVersions.forEach(item => item.style.display = 'flex');
+                textVersions.forEach(item => item.style.display = 'none');
+            } else {
+                // Show text, hide logos
+                logoVersions.forEach(item => item.style.display = 'none');
+                textVersions.forEach(item => item.style.display = 'flex');
+            }
+        });
+    </script>
 
     <!-- Custom Script for Brochure Warning -->
     <script>

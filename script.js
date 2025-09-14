@@ -802,17 +802,435 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Initialize Partnerships Carousel
     initializePartnershipsCarousel();
     
-    // Initialize Leaflet Map
-    await initializeWorldMap();
+    // Initialize Leaflet Map (only if container exists)
+    const mapContainer = document.getElementById('worldMap');
+    if (mapContainer) {
+        await initializeWorldMap();
+    } else {
+        console.log('🗺️ World map container not found - skipping map initialization');
+    }
     
     // Update sidebar with loaded data
     await updateNodesSidebar();
     
-    // Initialize Calendar
-    initializeCalendar();
-    createNodeCalendars();
+// ASTONISHING QUANTUM CALENDAR ENHANCEMENTS
+
+// Initialize enhanced calendar features
+function initializeAstonishingCalendar() {
+    try {
+        console.log('🚀 Initializing Astonishing Calendar...');
+        initializeQuantumAnimations();
+        initializeCounterAnimations();
+        initializeViewSwitcher();
+        initializeProgressRings();
+        initializeEventModal();
+        initializeQuantumEffects();
+        initializeCalendarInteractions();
+        console.log('✅ Astonishing Calendar initialized successfully');
+    } catch (error) {
+        console.error('❌ Error initializing Astonishing Calendar:', error);
+    }
+}
+
+// Quantum animations for the calendar
+function initializeQuantumAnimations() {
+    // Animate letters on hover
+    const quantumText = document.querySelector('.quantum-text');
+    if (quantumText) {
+        const letters = quantumText.querySelectorAll('.letter');
+        letters.forEach((letter, index) => {
+            letter.addEventListener('mouseenter', () => {
+                letter.style.animationDelay = '0s';
+                letter.style.animation = 'quantumLetterHover 0.6s ease-in-out';
+            });
+            
+            letter.addEventListener('animationend', () => {
+                letter.style.animation = `quantumLetterFloat 3s ease-in-out infinite`;
+                letter.style.animationDelay = `${(index + 1) * 0.1}s`;
+            });
+        });
+    }
+
+    // Add quantum particle effects to week headers
+    const weekHeaders = document.querySelectorAll('.quantum-week-header');
+    weekHeaders.forEach(header => {
+        for (let i = 0; i < 5; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'quantum-particle';
+            particle.style.cssText = `
+                position: absolute;
+                width: 3px;
+                height: 3px;
+                background: radial-gradient(circle, #06b6d4, transparent);
+                border-radius: 50%;
+                animation: quantumParticleMove ${3 + Math.random() * 2}s linear infinite;
+                animation-delay: ${Math.random() * 2}s;
+                left: ${Math.random() * 100}%;
+                top: ${Math.random() * 100}%;
+            `;
+            header.appendChild(particle);
+        }
+    });
+}
+
+// Counter animation for stats
+function initializeCounterAnimations() {
+    const statNumbers = document.querySelectorAll('.stat-number');
     
-    // Set initial active states
+    // Check if stat elements exist before proceeding
+    if (statNumbers.length === 0) {
+        console.log('No stat-number elements found, skipping counter animations');
+        return;
+    }
+    
+    const observerOptions = {
+        threshold: 0.5,
+        rootMargin: '0px 0px -10% 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && entry.target) {
+                const targetValue = parseInt(entry.target.getAttribute('data-target'));
+                if (!isNaN(targetValue)) {
+                    animateCounter(entry.target, targetValue);
+                    observer.unobserve(entry.target);
+                }
+            }
+        });
+    }, observerOptions);
+
+    statNumbers.forEach(stat => {
+        if (stat && stat.getAttribute('data-target')) {
+            observer.observe(stat);
+        }
+    });
+}
+
+function animateCounter(element, target) {
+    // Safety check to ensure element exists
+    if (!element || element.textContent === undefined) {
+        console.warn('animateCounter: Invalid element provided');
+        return;
+    }
+    
+    let current = 0;
+    const increment = target / 60; // 60 frames for smooth animation
+    const timer = setInterval(() => {
+        // Additional safety check during animation
+        if (!element || element.textContent === undefined) {
+            clearInterval(timer);
+            return;
+        }
+        
+        current += increment;
+        element.textContent = Math.ceil(current);
+        
+        if (current >= target) {
+            element.textContent = target;
+            clearInterval(timer);
+            if (element.style) {
+                element.style.animation = 'quantumNumberPulse 2s ease-in-out infinite';
+            }
+        }
+    }, 16); // ~60fps
+}
+
+// View switcher functionality
+function initializeViewSwitcher() {
+    const viewBtns = document.querySelectorAll('.view-btn');
+    const weeklyView = document.getElementById('weekly-view');
+    
+    viewBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Update active state
+            viewBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            // Add transition effect
+            weeklyView.style.transform = 'scale(0.95)';
+            weeklyView.style.opacity = '0.7';
+            
+            setTimeout(() => {
+                weeklyView.style.transform = 'scale(1)';
+                weeklyView.style.opacity = '1';
+                
+                // Here you would implement different view modes
+                const viewType = btn.getAttribute('data-view');
+                console.log(`🔮 Switching to ${viewType} view`);
+                
+                // Add quantum transition effect
+                createQuantumTransition();
+            }, 200);
+        });
+    });
+}
+
+// Progress rings animation
+function initializeProgressRings() {
+    const progressRings = document.querySelectorAll('.progress-circle');
+    
+    if (progressRings.length === 0) {
+        console.log('No progress rings found, skipping progress ring animations');
+        return;
+    }
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && entry.target) {
+                try {
+                    const circle = entry.target;
+                    const progressText = circle.parentElement?.querySelector('.progress-text');
+                    
+                    if (!progressText) {
+                        console.warn('Progress text element not found for progress ring');
+                        return;
+                    }
+                    
+                    // Random progress for demo
+                    const progress = Math.floor(Math.random() * 100);
+                    const circumference = 2 * Math.PI * 25; // radius = 25
+                    const offset = circumference - (progress / 100) * circumference;
+                    
+                    circle.style.strokeDashoffset = offset;
+                    
+                    // Animate the percentage text
+                    animateCounter(progressText, progress);
+                    progressText.style.color = progress > 66 ? '#06b6d4' : progress > 33 ? '#f59e0b' : '#ef4444';
+                    
+                    observer.unobserve(entry.target);
+                } catch (error) {
+                    console.error('Error animating progress ring:', error);
+                }
+            }
+        });
+    }, { threshold: 0.5 });
+    
+    progressRings.forEach(ring => {
+        if (ring) observer.observe(ring);
+    });
+}
+
+// Event modal functionality
+function initializeEventModal() {
+    const modal = document.getElementById('event-modal');
+    const closeBtn = modal?.querySelector('.modal-close');
+    const backdrop = modal?.querySelector('.modal-backdrop');
+    
+    // Close modal handlers
+    [closeBtn, backdrop].forEach(element => {
+        element?.addEventListener('click', closeModal);
+    });
+    
+    // ESC key to close
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal?.style.display === 'block') {
+            closeModal();
+        }
+    });
+    
+    function closeModal() {
+        if (modal) {
+            modal.style.animation = 'modalFadeOut 0.3s ease';
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        }
+    }
+    
+    // Add global function to show modal
+    window.showEventModal = function(eventData) {
+        if (!modal) return;
+        
+        // Populate modal content
+        modal.querySelector('.modal-title').textContent = eventData.title;
+        modal.querySelector('.event-time').innerHTML = `<i class="fas fa-clock"></i> ${eventData.time}`;
+        modal.querySelector('.event-speaker').innerHTML = `<i class="fas fa-user"></i> ${eventData.speaker}`;
+        modal.querySelector('.event-description').textContent = eventData.description;
+        
+        // Show modal with animation
+        modal.style.display = 'block';
+        modal.style.animation = 'modalFadeIn 0.3s ease';
+    };
+}
+
+// Quantum effects
+function initializeQuantumEffects() {
+    // Add hover effects to calendar slots
+    const quantumSlots = document.querySelectorAll('.quantum-slot');
+    quantumSlots.forEach(slot => {
+        slot.addEventListener('mouseenter', () => {
+            createQuantumRipple(slot);
+        });
+    });
+    
+    // Add quantum glow to day headers
+    const dayHeaders = document.querySelectorAll('.quantum-day-header');
+    dayHeaders.forEach(header => {
+        header.addEventListener('mouseenter', () => {
+            const glow = header.querySelector('.day-glow');
+            if (glow) {
+                glow.style.animation = 'dayGlow 1s ease-in-out';
+            }
+        });
+    });
+}
+
+function createQuantumRipple(element) {
+    const ripple = document.createElement('div');
+    const rect = element.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    
+    ripple.style.cssText = `
+        position: absolute;
+        width: ${size}px;
+        height: ${size}px;
+        left: ${rect.width / 2 - size / 2}px;
+        top: ${rect.height / 2 - size / 2}px;
+        background: radial-gradient(circle, rgba(6, 182, 212, 0.3), transparent);
+        border-radius: 50%;
+        transform: scale(0);
+        animation: quantumRipple 0.8s ease-out;
+        pointer-events: none;
+        z-index: 10;
+    `;
+    
+    element.style.position = 'relative';
+    element.appendChild(ripple);
+    
+    setTimeout(() => ripple.remove(), 800);
+}
+
+function createQuantumTransition() {
+    const transition = document.createElement('div');
+    transition.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle, rgba(6, 182, 212, 0.1), transparent);
+        z-index: 9999;
+        animation: quantumTransitionEffect 0.8s ease-out;
+        pointer-events: none;
+    `;
+    
+    document.body.appendChild(transition);
+    setTimeout(() => transition.remove(), 800);
+}
+
+// Calendar interactions
+function initializeCalendarInteractions() {
+    // Add click handlers for time slots
+    const timeSlots = document.querySelectorAll('.quantum-slot');
+    timeSlots.forEach(slot => {
+        slot.addEventListener('click', () => {
+            const time = slot.getAttribute('data-time');
+            const date = slot.closest('.quantum-day')?.getAttribute('data-date');
+            
+            if (time && date) {
+                console.log(`🕐 Clicked slot: ${date} at ${time}`);
+                // Here you would show event details or add event functionality
+                createQuantumPulse(slot);
+            }
+        });
+    });
+    
+    // DISABLED parallax effect on week sections - was causing overlap!
+    // const weekSections = document.querySelectorAll('.weekly-calendar-section');
+    // window.addEventListener('scroll', () => {
+    //     const scrolled = window.pageYOffset;
+    //     weekSections.forEach((section, index) => {
+    //         const rate = scrolled * -0.5 * (index + 1) * 0.1;
+    //         section.style.transform = `translateY(${rate}px)`;
+    //     });
+    // });
+}
+
+function createQuantumPulse(element) {
+    const pulse = document.createElement('div');
+    pulse.style.cssText = `
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 20px;
+        height: 20px;
+        background: radial-gradient(circle, #06b6d4, transparent);
+        border-radius: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        animation: quantumPulse 1s ease-out;
+        pointer-events: none;
+        z-index: 10;
+    `;
+    
+    element.style.position = 'relative';
+    element.appendChild(pulse);
+    
+    setTimeout(() => pulse.remove(), 1000);
+}
+
+// Add new keyframes to CSS dynamically
+function addQuantumKeyframes() {
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes quantumParticleMove {
+            0% { transform: translate(0, 0) scale(1); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translate(${Math.random() * 200 - 100}px, ${Math.random() * 200 - 100}px) scale(0); opacity: 0; }
+        }
+        
+        @keyframes quantumRipple {
+            0% { transform: scale(0); opacity: 0.8; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+        
+        @keyframes quantumTransitionEffect {
+            0% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(2); }
+        }
+        
+        @keyframes quantumPulse {
+            0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(10); opacity: 0; }
+        }
+        
+        @keyframes quantumNumberPulse {
+            0%, 100% { text-shadow: 0 0 20px rgba(6, 182, 212, 0.5); }
+            50% { text-shadow: 0 0 40px rgba(6, 182, 212, 0.8); }
+        }
+        
+        @keyframes modalFadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+    `;
+    document.head.appendChild(style);
+}
+
+// Initialize everything when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    try {
+        console.log('🎯 DOM Content Loaded - Initializing Quantum Calendar...');
+        addQuantumKeyframes();
+        
+        // Small delay to ensure DOM is fully ready
+        setTimeout(() => {
+            initializeAstonishingCalendar();
+        }, 250);
+    } catch (error) {
+        console.error('❌ Error in DOMContentLoaded handler:', error);
+    }
+});
+
+    // Initialize Weekly Calendar
+    initializeWeeklyCalendar();
+    
+    // Initialize Astonishing Calendar Features
+    setTimeout(() => {
+        initializeAstonishingCalendar();
+    }, 100);    // Set initial active states
     updateCurrentTime();
     
     // Handle window resize for responsive carousel
@@ -1079,313 +1497,322 @@ async function updateNodesSidebar() {
     }
 }
 
-// Custom Calendar functionality for October & November 2025
-let currentCalendarDate = new Date(2025, 9, 1); // October 2025 (month is 0-indexed)
-let currentActiveNode = 'all';
-let calendarEvents = {};
+// Weekly Calendar functionality for MadQFF'25
+let weeklyCalendarEvents = {};
 
-// Load events from JSON file
-async function loadEventsFromBackend() {
+// Parse and load events from calendar.ics
+async function loadCalendarFromICS() {
     try {
-        const response = await fetch('events.json');
-        const data = await response.json();
-        calendarEvents = data.events;
-        renderCalendar(); // Re-render calendar with new data
-        console.log('📅 Events loaded from events.json');
+        console.log('📅 Loading calendar from ICS file...');
+        const response = await fetch('calendar.ics');
+        const icsContent = await response.text();
+        weeklyCalendarEvents = parseICSContent(icsContent);
+        populateWeeklyCalendar();
+        console.log('📅 SUCCESS: Events loaded from calendar.ics:', weeklyCalendarEvents);
     } catch (error) {
-        console.error('Error loading events from backend:', error);
-        // Fall back to sample data if JSON file is not available
-        loadSampleEvents();
+        console.error('📅 ERROR loading calendar.ics:', error);
+        // Fall back to hardcoded events if ICS file fails
+        loadHardcodedEvents();
     }
 }
 
-// Fallback sample events
-function loadSampleEvents() {
-    calendarEvents = {
-        all: {
-            '2025-10-15': [
-                { title: 'Global QFF Kickoff', time: '14:00 UTC', type: 'Opening' },
-                { title: 'Welcome Ceremony', time: '16:00 UTC', type: 'Event' }
-            ],
-            '2025-10-22': [
-                { title: 'Quantum Algorithms Workshop', time: '15:00 UTC', type: 'Workshop' }
-            ],
-            '2025-11-05': [
-                { title: 'International QML Conference', time: '10:00 UTC', type: 'Conference' }
-            ],
-            '2025-11-12': [
-                { title: 'Global Networking Event', time: '18:00 UTC', type: 'Social' }
-            ]
-        },
-        argentina: {
-            '2025-10-18': [
-                { title: 'Buenos Aires Quantum Meetup', time: '19:00 ART', type: 'Meetup' }
-            ],
-            '2025-11-08': [
-                { title: 'Quantum Computing Workshop', time: '14:00 ART', type: 'Workshop' }
-            ]
-        },
-        madrid: {
-            '2025-10-25': [
-                { title: 'UAM Quantum Research Seminar', time: '16:00 CET', type: 'Seminar' }
-            ],
-            '2025-11-15': [
-                { title: 'European QFF Collaboration', time: '10:00 CET', type: 'Conference' }
-            ]
-        },
-        chile: {
-            '2025-10-20': [
-                { title: 'Santiago Quantum Hackathon', time: '09:00 CLT', type: 'Hackathon' }
-            ],
-            '2025-11-03': [
-                { title: 'Chilean QFF Symposium', time: '15:00 CLT', type: 'Symposium' }
-            ]
-        },
-        philadelphia: {
-            '2025-10-28': [
-                { title: 'Philly Quantum Fair', time: '13:00 EST', type: 'Fair' }
-            ],
-            '2025-11-18': [
-                { title: 'Industry Panel Discussion', time: '17:00 EST', type: 'Panel' }
-            ]
-        },
-        malaysia: {
-            '2025-10-30': [
-                { title: 'KL Quantum Innovation Summit', time: '20:00 MYT', type: 'Summit' }
-            ],
-            '2025-11-25': [
-                { title: 'ASEAN QFF Finale', time: '19:00 MYT', type: 'Finale' }
-            ]
-        }
-    };
-    renderCalendar();
-    console.log('📅 Using fallback sample events');
-}
-
-function initializeCalendar() {
-    const calendarTabs = document.querySelectorAll('.calendar-tab');
-    const prevBtn = document.getElementById('prevMonth');
-    const nextBtn = document.getElementById('nextMonth');
+function parseICSContent(icsContent) {
+    const events = {};
+    const eventBlocks = icsContent.split('BEGIN:VEVENT').slice(1);
     
-    // Load events from backend
-    loadEventsFromBackend();
-    
-    // Set up tab switching
-    calendarTabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            // Remove active class from all tabs
-            calendarTabs.forEach(t => t.classList.remove('active'));
-            // Add active class to clicked tab
-            tab.classList.add('active');
-            
-            currentActiveNode = tab.dataset.calendar;
-            renderCalendar();
+    eventBlocks.forEach(eventBlock => {
+        const lines = eventBlock.split('\n');
+        let event = {};
+        
+        lines.forEach(line => {
+            line = line.trim();
+            if (line.startsWith('DTSTART:')) {
+                const dateTimeStr = line.replace('DTSTART:', '');
+                if (dateTimeStr.includes('T') && dateTimeStr.includes('Z')) {
+                    // Parse: 20251027T150000Z -> 2025-10-27 15:00 UTC
+                    const dateStr = dateTimeStr.substring(0, 8); // 20251027
+                    const timeStr = dateTimeStr.substring(9, 15); // 150000
+                    
+                    const year = dateStr.substring(0, 4);
+                    const month = dateStr.substring(4, 6);
+                    const day = dateStr.substring(6, 8);
+                    event.date = `${year}-${month}-${day}`;
+                    
+                    const utcHour = parseInt(timeStr.substring(0, 2)); // 15 = 3PM UTC
+                    // Convert UTC to Madrid time (UTC+1): 15 UTC = 16 Madrid (4PM)
+                    const madridHour = utcHour + 1;
+                    event.startHour = madridHour;
+                    
+                    console.log(`📅 DTSTART parsed: ${event.date} at ${utcHour}:00 UTC = ${madridHour}:00 Madrid`);
+                } else if (dateTimeStr.includes('T')) {
+                    // Local time without Z
+                    const date = new Date(dateTimeStr.replace(/(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2})/, '$1-$2-$3T$4:$5:$6'));
+                    event.date = formatDateForEvent(date);
+                    event.startHour = date.getHours();
+                } else {
+                    // All day event - skip for now
+                    return;
+                }
+            }
+            if (line.startsWith('DTEND:')) {
+                const dateTimeStr = line.replace('DTEND:', '');
+                if (dateTimeStr.includes('T') && dateTimeStr.includes('Z')) {
+                    // Parse: 20251027T170000Z -> 17:00 UTC = 18:00 Madrid
+                    const timeStr = dateTimeStr.substring(9, 15); // 170000
+                    const utcHour = parseInt(timeStr.substring(0, 2)); // 17 = 5PM UTC
+                    const madridHour = utcHour + 1; // 18 = 6PM Madrid
+                    event.endHour = madridHour;
+                    
+                    console.log(`📅 DTEND parsed: ${utcHour}:00 UTC = ${madridHour}:00 Madrid`);
+                }
+            }
+            if (line.startsWith('SUMMARY:')) {
+                event.title = line.replace('SUMMARY:', '').replace(/\\,/g, ',');
+            }
         });
-    });
-    
-    // Set up navigation buttons
-    prevBtn.addEventListener('click', () => {
-        if (currentCalendarDate.getMonth() > 9) { // Only allow October (9) and November (10)
-            currentCalendarDate.setMonth(currentCalendarDate.getMonth() - 1);
-            renderCalendar();
+        
+        // Skip events that contain "NOTSURE" - they are not confirmed
+        if (event.title && event.title.includes('NOTSURE')) {
+            console.log(`📅 Skipping NOTSURE event: ${event.title}`);
+            return; // Skip this event completely
+        }
+        
+        if (event.date && event.title && event.startHour !== undefined) {
+            if (!events[event.date]) {
+                events[event.date] = {};
+            }
+            
+            // Calculate duration in hours
+            const durationHours = event.endHour ? (event.endHour - event.startHour) : 1;
+            
+            // Extract speaker and company from title using format: [Speaker] : [Company]
+            let speaker = '';
+            let title = event.title;
+            
+            if (event.title.includes(' : ')) {
+                const parts = event.title.split(' : ');
+                if (parts.length >= 2) {
+                    speaker = parts[0];                    // [Speaker]
+                    title = parts.slice(1).join(' : ');   // [Company] (or [Company] : [Additional Info])
+                }
+            } else if (event.title.includes(' - ')) {
+                // Fallback to dash format for backward compatibility
+                const parts = event.title.split(' - ');
+                if (parts.length >= 2) {
+                    speaker = parts[0];
+                    title = parts.slice(1).join(' - ');
+                }
+            }
+            
+            // Store event with actual duration
+            const eventData = {
+                title: title,
+                speaker: speaker,
+                startHour: event.startHour,
+                endHour: event.endHour || (event.startHour + 1),
+                duration: durationHours
+            };
+            
+            events[event.date][event.startHour.toString()] = eventData;
+            
+            console.log(`📅 Added event: ${event.date} at ${event.startHour}:00-${eventData.endHour}:00 (${durationHours}h) - ${title} (${speaker})`);
         }
     });
     
-    nextBtn.addEventListener('click', () => {
-        if (currentCalendarDate.getMonth() < 10) { // Only allow October (9) and November (10)
-            currentCalendarDate.setMonth(currentCalendarDate.getMonth() + 1);
-            renderCalendar();
-        }
-    });
-    
-    // Initial render
-    renderCalendar();
+    return events;
 }
 
-function renderCalendar() {
-    const monthYearElement = document.getElementById('currentMonthYear');
-    const calendarDaysElement = document.getElementById('calendarDays');
-    const prevBtn = document.getElementById('prevMonth');
-    const nextBtn = document.getElementById('nextMonth');
-    
-    if (!monthYearElement || !calendarDaysElement) return;
-    
-    const year = currentCalendarDate.getFullYear();
-    const month = currentCalendarDate.getMonth();
-    
-    // Update month/year display
-    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
-                       'July', 'August', 'September', 'October', 'November', 'December'];
-    monthYearElement.textContent = `${monthNames[month]} ${year}`;
-    
-    // Update navigation buttons
-    prevBtn.disabled = month <= 9; // Disable if at October
-    nextBtn.disabled = month >= 10; // Disable if at November
-    
-    // Get first day of month and number of days
-    const firstDay = new Date(year, month, 1);
-    const lastDay = new Date(year, month + 1, 0);
-    const daysInMonth = lastDay.getDate();
-    const startDate = firstDay.getDay(); // Day of week (0 = Sunday)
-    
-    // Get events for current node
-    const nodeEvents = calendarEvents[currentActiveNode] || {};
-    
-    // Clear calendar
-    calendarDaysElement.innerHTML = '';
-    
-    // Add empty cells for days before month starts
-    for (let i = 0; i < startDate; i++) {
-        const dayElement = document.createElement('div');
-        dayElement.className = 'calendar-day other-month';
-        calendarDaysElement.appendChild(dayElement);
-    }
-    
-    // Add days of the month
-    const today = new Date();
-    for (let day = 1; day <= daysInMonth; day++) {
-        const dayElement = document.createElement('div');
-        dayElement.className = 'calendar-day';
-        
-        const currentDate = new Date(year, month, day);
-        const dateString = formatDateString(currentDate);
-        
-        // Check if it's today
-        if (currentDate.toDateString() === today.toDateString()) {
-            dayElement.classList.add('today');
-        }
-        
-        // Check if there are events on this day
-        const dayEvents = nodeEvents[dateString] || [];
-        if (dayEvents.length > 0) {
-            dayElement.classList.add('has-events');
-        }
-        
-        // Create day content
-        const dayNumber = document.createElement('div');
-        dayNumber.className = 'day-number';
-        dayNumber.textContent = day;
-        
-        const eventsContainer = document.createElement('div');
-        eventsContainer.className = 'day-events';
-        
-        if (dayEvents.length > 0) {
-            const eventText = dayEvents.length === 1 
-                ? dayEvents[0].title.substring(0, 12) + '...'
-                : `${dayEvents.length} events`;
-            eventsContainer.textContent = eventText;
-        }
-        
-        dayElement.appendChild(dayNumber);
-        dayElement.appendChild(eventsContainer);
-        
-        // Add click handler for days with events
-        if (dayEvents.length > 0) {
-            dayElement.addEventListener('click', () => {
-                showEventModal(dateString, dayEvents);
-            });
-        }
-        
-        calendarDaysElement.appendChild(dayElement);
-    }
-}
-
-function formatDateString(date) {
+function formatDateForEvent(date) {
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const day = String(date.getDate()).padStart(2, '0');
     return `${year}-${month}-${day}`;
 }
 
-function showEventModal(dateString, events) {
-    // Create modal if it doesn't exist
-    let modal = document.getElementById('eventModal');
-    if (!modal) {
-        modal = document.createElement('div');
-        modal.id = 'eventModal';
-        modal.className = 'event-modal';
-        modal.innerHTML = `
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-title"></h3>
-                    <button class="modal-close">&times;</button>
-                </div>
-                <div class="modal-body"></div>
-            </div>
-        `;
-        document.body.appendChild(modal);
+function formatTimeForEvent(date) {
+    // Convert UTC to local time (Madrid timezone)
+    const madridOffset = 1; // UTC+1 (or UTC+2 during daylight saving)
+    const localDate = new Date(date.getTime() + madridOffset * 60 * 60 * 1000);
+    const hours = localDate.getUTCHours();
+    const minutes = localDate.getUTCMinutes();
+    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+}
+
+function loadHardcodedEvents() {
+    console.log('📅 Loading hardcoded events...');
+    weeklyCalendarEvents = {
+        // Week 1: Oct 27-31 (Madrid time: UTC+1, so 150000Z = 4PM Madrid, 160000Z = 5PM Madrid, etc.)
+        '2025-10-27': {
+            '16': { title: 'Quantum Computing 101', speaker: 'Enrique Anguiano-Vara' }, // 150000Z UTC = 4PM Madrid
+            '17': { title: 'Hands on Qiskit!', speaker: '' }, // 160000Z UTC = 5PM Madrid
+            '18': { title: 'Qiskit notebook pt.1', speaker: '' } // 170000Z UTC = 6PM Madrid
+        },
+        '2025-10-28': {
+            '16': { title: 'Must-know QC Algorithms', speaker: 'Enrique Anguiano-Vara' } // 150000Z-170000Z = 4-6PM Madrid
+        },
+        '2025-10-29': {
+            '16': { title: 'Quantum Chemistry', speaker: 'Enrique Anguiano-Vara' } // 150000Z-170000Z = 4-6PM Madrid
+        },
+        '2025-10-30': {
+            '16': { title: 'QML Introduction', speaker: 'Claudia Zendeja-Morales' } // 150000Z-170000Z = 4-6PM Madrid
+        },
+        '2025-10-31': {
+            '16': { title: 'Types of quantum computers', speaker: '' }, // 150000Z UTC = 4PM Madrid
+            '17': { title: 'Quantum Photonics Introduction', speaker: '' } // 160000Z UTC = 5PM Madrid
+        },
         
-        // Add close handlers
-        modal.querySelector('.modal-close').addEventListener('click', () => {
-            modal.classList.remove('active');
-        });
-        
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.classList.remove('active');
-            }
-        });
-    }
+        // Week 2: Nov 3-7
+        '2025-11-03': {
+            '16': { title: 'Pasqal', speaker: 'Victor Onofre' }, // 150000Z UTC = 4PM Madrid
+            '17': { title: 'Sparrow Quantum', speaker: 'Oliver Luscombe Nørregaard' }, // 160000Z UTC = 5PM Madrid
+            '18': { title: 'Quandela', speaker: '' }, // 170000Z UTC = 6PM Madrid
+            '19': { title: 'EXTRA TIME', speaker: '' } // 180000Z UTC = 7PM Madrid
+        },
+        '2025-11-04': {
+            '16': { title: 'MadQCI : UPM', speaker: 'Martín Ayuso' }, // 150000Z UTC = 4PM Madrid
+            '17': { title: 'MadQCI to Reality : IMDEA Software', speaker: '' }, // 160000Z UTC = 5PM Madrid
+            '18': { title: 'IMDEA Software', speaker: 'Farzam Nosrati' }, // 170000Z UTC = 6PM Madrid
+            '19': { title: 'EXTRA TIME', speaker: '' } // 180000Z UTC = 7PM Madrid
+        },
+        '2025-11-05': {
+            '16': { title: 'ICFO', speaker: '' }, // 150000Z UTC = 4PM Madrid
+            '17': { title: 'Multiverse Computing', speaker: 'Roman Orus' }, // 160000Z UTC = 5PM Madrid
+            '18': { title: 'GMV', speaker: 'Alexander Benítez Buenache, Antón Makarov, Queralt Portell de Montserrat' }, // 170000Z UTC = 6PM Madrid
+            '19': { title: 'EXTRA TIME', speaker: '' } // 180000Z UTC = 7PM Madrid
+        },
+        '2025-11-06': {
+            '16': { title: 'ICMM-UAM - QML Research', speaker: 'Yue Ban' }, // 150000Z UTC = 4PM Madrid
+            '17': { title: 'ICMM-UAM - QML Research', speaker: 'Xi Chen' }, // 160000Z UTC = 5PM Madrid
+            '18': { title: 'IFF-CSIC - Real-Time Dynamics in a (2+1)-D Gauge Theory', speaker: 'César Benito' }, // 170000Z UTC = 6PM Madrid
+            '19': { title: 'EXTRA TIME', speaker: '' } // 180000Z UTC = 7PM Madrid
+        },
+        '2025-11-07': {
+            '16': { title: 'QWorld', speaker: 'Claudia Zendeja Morales' }, // 150000Z UTC = 4PM Madrid
+            '16.5': { title: 'CPrA, the spanish QCousin', speaker: '' }, // 153000Z UTC = 4:30PM Madrid
+            '17': { title: 'IBM Quantum', speaker: 'Ismael Faro' }, // 160000Z UTC = 5PM Madrid
+            '18': { title: 'Quantum Kipu - Protein folding', speaker: 'Alejandro Gómez Cadavid' }, // 170000Z UTC = 6PM Madrid
+            '19': { title: 'CPrA : Hackathons Introduction', speaker: '' } // 180000Z UTC = 7PM Madrid
+        }
+    };
+    populateWeeklyCalendar();
+    console.log('📅 Using hardcoded events for weekly calendar');
+}
+
+function populateWeeklyCalendar() {
+    console.log('📅 Populating weekly calendar with events:', weeklyCalendarEvents);
     
-    // Update modal content
-    const modalTitle = modal.querySelector('.modal-title');
-    const modalBody = modal.querySelector('.modal-body');
+    const weekConfigs = [
+        { prefix: 'week1', dates: ['2025-10-27', '2025-10-28', '2025-10-29', '2025-10-30', '2025-10-31'] },
+        { prefix: 'week2', dates: ['2025-11-03', '2025-11-04', '2025-11-05', '2025-11-06', '2025-11-07'] },
+        { prefix: 'week3', dates: ['2025-11-10', '2025-11-11', '2025-11-12', '2025-11-13', '2025-11-14'] }
+    ];
     
-    const date = new Date(dateString);
-    const dateFormatted = date.toLocaleDateString('en-US', { 
-        weekday: 'long', 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric' 
+    const dayNames = ['mon', 'tue', 'wed', 'thu', 'fri'];
+    const hours = ['16', '17', '18']; // 4pm, 5pm, 6pm - REMOVED 7PM (hour 19)
+    
+    // Reset all containers first
+    weekConfigs.forEach(week => {
+        week.dates.forEach((date, dayIndex) => {
+            hours.forEach(hour => {
+                const containerId = `${week.prefix}-${dayNames[dayIndex]}-${hour}`;
+                const container = document.getElementById(containerId);
+                if (container) {
+                    container.style.display = 'block';
+                    container.style.gridRow = 'span 1';
+                    container.style.minHeight = '120px';
+                    container.classList.remove('multi-hour-event');
+                    container.removeAttribute('data-occupied');
+                }
+            });
+        });
     });
     
-    modalTitle.textContent = dateFormatted;
-    
-    modalBody.innerHTML = events.map(event => `
-        <div class="event-item" style="margin-bottom: 1rem; padding: 1.5rem; background: rgba(147, 51, 234, 0.1); border-radius: 12px; border-left: 4px solid var(--accent-cyan);">
-            <h4 style="color: var(--accent-cyan); margin: 0 0 0.75rem 0; font-size: 1.2rem;">${event.title}</h4>
-            <div style="margin-bottom: 0.5rem;">
-                <p style="margin: 0 0 0.5rem 0; color: white; display: flex; align-items: center; gap: 0.5rem;">
-                    <i class="fas fa-clock"></i> ${event.time}
-                </p>
-                ${event.location ? `<p style="margin: 0 0 0.5rem 0; color: white; display: flex; align-items: center; gap: 0.5rem;"><i class="fas fa-map-marker-alt"></i> ${event.location}</p>` : ''}
-                ${event.organizer ? `<p style="margin: 0 0 0.5rem 0; color: white; display: flex; align-items: center; gap: 0.5rem;"><i class="fas fa-user"></i> ${event.organizer}</p>` : ''}
-            </div>
-            ${event.description ? `<p style="margin: 0.75rem 0; color: var(--text-light); line-height: 1.4;">${event.description}</p>` : ''}
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem;">
-                <span style="background: var(--accent-purple); color: white; padding: 0.25rem 0.75rem; border-radius: 15px; font-size: 0.8rem; font-weight: 500;">${event.type}</span>
-                ${event.id ? `<button onclick="window.open('#', '_blank')" style="background: var(--accent-cyan); color: white; border: none; padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer; font-size: 0.9rem;">Learn More</button>` : ''}
-            </div>
-        </div>
-    `).join('');
-    
-    // Show modal
-    modal.classList.add('active');
+    weekConfigs.forEach(week => {
+        week.dates.forEach((date, dayIndex) => {
+            hours.forEach(hour => {
+                const containerId = `${week.prefix}-${dayNames[dayIndex]}-${hour}`;
+                const container = document.getElementById(containerId);
+                
+                if (container) {
+                    const dayEvents = weeklyCalendarEvents[date] || {};
+                    const hourEvent = dayEvents[hour];
+                    
+                    if (hourEvent) {
+                        console.log(`📅 Adding event to ${containerId}:`, hourEvent);
+                        
+                        // Use the actual duration from the calendar.ics file
+                        const eventDuration = hourEvent.duration || 1;
+                        
+                        let eventHtml = renderActivityForHour(hourEvent);
+                        
+                        // Apply multi-hour styling if event lasts more than 1 hour
+                        if (eventDuration > 1 && eventDuration <= 3) {
+                            container.style.gridRow = `span ${eventDuration}`;
+                            container.style.minHeight = `${120 * eventDuration}px`;
+                            container.classList.add('multi-hour-event');
+                            
+                            // Hide subsequent hour containers to avoid overlap
+                            for (let i = 1; i < eventDuration; i++) {
+                                const nextHour = String(parseInt(hour) + i);
+                                const nextContainerId = `${week.prefix}-${dayNames[dayIndex]}-${nextHour}`;
+                                const nextContainer = document.getElementById(nextContainerId);
+                                if (nextContainer && hours.includes(nextHour)) {
+                                    nextContainer.style.display = 'none';
+                                    nextContainer.setAttribute('data-occupied', 'true');
+                                }
+                            }
+                        }
+                        
+                        container.innerHTML = eventHtml;
+                        container.style.display = 'block';
+                        container.style.minHeight = `${120 * eventDuration}px`;
+                    } else {
+                        // Check if this slot is occupied by a multi-hour event
+                        if (!container.getAttribute('data-occupied')) {
+                            // Only show "Coming soon..." for Week 2, leave others empty
+                            if (week.prefix === 'week2') {
+                                container.innerHTML = '<div class="no-activity">Coming soon...</div>';
+                                container.style.backgroundColor = '#f8f9fa';
+                                container.style.border = '1px dashed #ddd';
+                            } else {
+                                // For Week 1 and Week 3, leave completely empty
+                                container.innerHTML = '';
+                                container.style.backgroundColor = 'transparent';
+                                container.style.border = 'none';
+                            }
+                            container.style.display = 'block';
+                            container.style.minHeight = '120px';
+                        }
+                    }
+                } else {
+                    console.warn(`📅 Container not found: ${containerId}`);
+                }
+            });
+        });
+    });
 }
 
-// Function to load events from backend (replace sample data)
-async function loadEventsFromBackend() {
-    try {
-        // Replace this with your actual backend API call
-        // const response = await fetch('/api/events');
-        // const data = await response.json();
-        // calendarEvents = data;
-        
-        console.log('📅 Using sample events for October & November 2025');
-        console.log('🔧 Replace loadEventsFromBackend() with your API endpoint');
-    } catch (error) {
-        console.error('Error loading events from backend:', error);
+function renderActivityForHour(activity) {
+    if (!activity) {
+        return '<div class="no-activity">—</div>';
     }
+    
+    const speakerText = activity.speaker ? `<div class="activity-speaker">${activity.speaker}</div>` : '';
+    return `
+        <div class="activity">
+            <div class="activity-title">${activity.title}</div>
+            ${speakerText}
+        </div>
+    `;
 }
 
-function createNodeCalendars() {
-    // All calendars use the same custom calendar view
-    // The difference is in the events data displayed
-    console.log('📅 Custom calendar initialized for October & November 2025');
+function initializeWeeklyCalendar() {
+    console.log('📅 Starting weekly calendar initialization...');
+    // Add a small delay to ensure DOM elements are fully rendered
+    setTimeout(() => {
+        loadCalendarFromICS();
+    }, 100);
 }
 
-// Initialize calendar functionality
-initializeCalendar();
-
-// Create node calendars placeholders
-createNodeCalendars();
+// Initialize weekly calendar functionality on page load
+console.log('📅 Weekly calendar system ready for MadQFF\'25');
