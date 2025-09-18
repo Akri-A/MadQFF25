@@ -1698,6 +1698,78 @@ function loadHardcodedEvents() {
     console.log('📅 Using hardcoded events for weekly calendar');
 }
 
+function addSeparatorsToWeek(week, weekData, dayNames) {
+    const weekSection = document.querySelector(`.${week.prefix}-quantum`);
+    if (!weekSection) return;
+    
+    const weeklyGrid = weekSection.querySelector('.weekly-grid');
+    if (!weeklyGrid) return;
+    
+    // Add separators to each day column
+    week.dates.forEach((date, dayIndex) => {
+        const dayColumn = weeklyGrid.querySelector(`[data-date="${date}"]`);
+        if (!dayColumn) return;
+        
+        weekData.separators.forEach(separator => {
+            // Check if separator already exists
+            const existingSeparator = dayColumn.querySelector(`[data-gap="${separator.id}"]`);
+            if (existingSeparator) return;
+            
+            // Create separator element
+            const separatorElement = document.createElement('div');
+            separatorElement.className = 'time-separator';
+            separatorElement.setAttribute('data-gap', separator.id);
+            separatorElement.innerHTML = `
+                <div class="separator-line"></div>
+                <div class="separator-label">
+                    ${separator.label}
+                    <br><span class="separator-time">${separator.timeRange}</span>
+                    <br><span class="separator-resume">${separator.resumeTime}</span>
+                </div>
+            `;
+            
+            // Insert separator in the correct position
+            const dayHeader = dayColumn.querySelector('.day-header');
+            const existingSlots = dayColumn.querySelectorAll('.hour-slot');
+            
+            // Find where to insert the separator based on hour order
+            let insertAfterElement = dayHeader;
+            
+            existingSlots.forEach(slot => {
+                const slotHour = parseInt(slot.id.split('-').pop());
+                if (slotHour < separator.nextActivityHour) {
+                    insertAfterElement = slot;
+                }
+            });
+            
+            // Insert after the determined element
+            insertAfterElement.parentNode.insertBefore(separatorElement, insertAfterElement.nextSibling);
+        });
+    });
+}
+
+function generateCalendarHTML(week, weekData, dayNames) {
+    // Don't regenerate HTML completely - instead, just ensure proper structure exists
+    // The existing HTML already has the correct week classes that we need to preserve
+    console.log(`📅 Preserving existing calendar structure for ${week.prefix} to maintain styling`);
+    
+    // If we need dynamic hours, we'll handle them in populateWeeklyCalendar
+    // This function now just validates that the week structure exists
+    const weekSection = document.querySelector(`.${week.prefix}-quantum`);
+    if (!weekSection) {
+        console.warn(`📅 Week section not found: ${week.prefix}-quantum`);
+        return;
+    }
+    
+    const weeklyGrid = weekSection.querySelector('.weekly-grid');
+    if (!weeklyGrid) {
+        console.warn(`📅 Weekly grid not found in: ${week.prefix}`);
+        return;
+    }
+    
+    console.log(`📅 Week ${week.prefix} structure validated and ready`);
+}
+
 function populateWeeklyCalendar() {
     console.log('📅 Populating weekly calendar with events:', weeklyCalendarEvents);
     
@@ -1708,12 +1780,99 @@ function populateWeeklyCalendar() {
     ];
     
     const dayNames = ['mon', 'tue', 'wed', 'thu', 'fri'];
-    const hours = ['16', '17', '18']; // 4pm, 5pm, 6pm - REMOVED 7PM (hour 19)
     
-    // Reset all containers first
+    // Calculate dynamic hours for each week based on actual activities
+    const getWeekHours = (weekDates) => {
+        let allHours = new Set();
+        
+        // Collect all hours that have activities
+        weekDates.forEach(date => {
+            if (weeklyCalendarEvents[date]) {
+                Object.keys(weeklyCalendarEvents[date]).forEach(hour => {
+                    const hourNum = parseInt(hour);
+                    const activity = weeklyCalendarEvents[date][hour];
+                    allHours.add(hourNum);
+                    // Add all hours covered by multi-hour activities
+                    const endHour = activity.endHour || (hourNum + 1);
+                    for (let h = hourNum; h < endHour; h++) {
+                        allHours.add(h);
+                    }
+                });
+            }
+        });
+        
+        if (allHours.size === 0) {
+            return { hours: ['16', '17', '18'], separators: [] }; // default fallback
+        }
+        
+        // Convert to sorted array
+        const sortedHours = Array.from(allHours).sort((a, b) => a - b);
+        const minHour = sortedHours[0];
+        const maxHour = sortedHours[sortedHours.length - 1];
+        
+        // Generate hours array with separators for gaps > 1 hour
+        const hoursWithSeparators = [];
+        const separators = [];
+        
+        let currentHour = minHour;
+        
+        while (currentHour <= maxHour) {
+            if (allHours.has(currentHour)) {
+                hoursWithSeparators.push(currentHour.toString());
+                currentHour++;
+            } else {
+                // Find the end of the gap
+                let gapStart = currentHour;
+                let gapEnd = currentHour;
+                while (gapEnd <= maxHour && !allHours.has(gapEnd)) {
+                    gapEnd++;
+                }
+                
+                const gapSize = gapEnd - gapStart;
+                
+                // Only add separator for gaps > 1 hour
+                if (gapSize > 1 && gapEnd <= maxHour) {
+                    const separatorId = `gap-${gapStart}-${gapEnd - 1}`;
+                    hoursWithSeparators.push(separatorId);
+                    separators.push({
+                        id: separatorId,
+                        startHour: gapStart,
+                        endHour: gapEnd - 1,
+                        nextActivityHour: gapEnd,
+                        label: `No activities`,
+                        timeRange: `${gapStart.toString().padStart(2, '0')}:00 - ${gapEnd.toString().padStart(2, '0')}:00`,
+                        resumeTime: `Activities resume at ${gapEnd.toString().padStart(2, '0')}:00`
+                    });
+                }
+                
+                currentHour = gapEnd;
+            }
+        }
+        
+        console.log(`📅 Week hours with separators:`, hoursWithSeparators);
+        console.log(`📅 Separators:`, separators);
+        return { hours: hoursWithSeparators, separators };
+    };
+    
+    // Generate dynamic calendar HTML for each week
     weekConfigs.forEach(week => {
+        const weekData = getWeekHours(week.dates);
+        generateCalendarHTML(week, weekData, dayNames);
+    });
+    
+    // Process activities for each week with dynamic hours
+    weekConfigs.forEach(week => {
+        const weekData = getWeekHours(week.dates);
+        const weekHours = weekData.hours.filter(item => !item.startsWith('gap-')); // Only actual hours, not separators
+        
+        // Add separators to the calendar if needed
+        if (weekData.separators.length > 0) {
+            addSeparatorsToWeek(week, weekData, dayNames);
+        }
+        
+        // Reset containers
         week.dates.forEach((date, dayIndex) => {
-            hours.forEach(hour => {
+            weekHours.forEach(hour => {
                 const containerId = `${week.prefix}-${dayNames[dayIndex]}-${hour}`;
                 const container = document.getElementById(containerId);
                 if (container) {
@@ -1725,11 +1884,10 @@ function populateWeeklyCalendar() {
                 }
             });
         });
-    });
-    
-    weekConfigs.forEach(week => {
+        
+        // Populate activities
         week.dates.forEach((date, dayIndex) => {
-            hours.forEach(hour => {
+            weekHours.forEach(hour => {
                 const containerId = `${week.prefix}-${dayNames[dayIndex]}-${hour}`;
                 const container = document.getElementById(containerId);
                 
@@ -1756,7 +1914,7 @@ function populateWeeklyCalendar() {
                                 const nextHour = String(parseInt(hour) + i);
                                 const nextContainerId = `${week.prefix}-${dayNames[dayIndex]}-${nextHour}`;
                                 const nextContainer = document.getElementById(nextContainerId);
-                                if (nextContainer && hours.includes(nextHour)) {
+                                if (nextContainer && weekHours.includes(nextHour)) {
                                     nextContainer.style.display = 'none';
                                     nextContainer.setAttribute('data-occupied', 'true');
                                 }
@@ -1769,17 +1927,10 @@ function populateWeeklyCalendar() {
                     } else {
                         // Check if this slot is occupied by a multi-hour event
                         if (!container.getAttribute('data-occupied')) {
-                            // Only show "Coming soon..." for Week 2, leave others empty
-                            if (week.prefix === 'week2') {
-                                container.innerHTML = '<div class="no-activity">Coming soon...</div>';
-                                container.style.backgroundColor = '#f8f9fa';
-                                container.style.border = '1px dashed #ddd';
-                            } else {
-                                // For Week 1 and Week 3, leave completely empty
-                                container.innerHTML = '';
-                                container.style.backgroundColor = 'transparent';
-                                container.style.border = 'none';
-                            }
+                            // Leave all weeks empty when no activity
+                            container.innerHTML = '';
+                            container.style.backgroundColor = 'transparent';
+                            container.style.border = 'none';
                             container.style.display = 'block';
                             container.style.minHeight = '120px';
                         }
@@ -1803,18 +1954,47 @@ function renderActivityForHour(activity) {
     let timeText = '';
     if (activity.startHour !== undefined) {
         const startTime = `${activity.startHour.toString().padStart(2, '0')}:00`;
-        if (activity.endHour && activity.endHour !== activity.startHour + 1) {
-            const endTime = `${activity.endHour.toString().padStart(2, '0')}:00`;
-            timeText = `${startTime} - ${endTime}`;
-        } else {
-            timeText = startTime;
-        }
+        const endHour = activity.endHour || (activity.startHour + 1);
+        const endTime = `${endHour.toString().padStart(2, '0')}:00`;
+        timeText = `${startTime} - ${endTime}`;
     }
     
     const timeDisplay = timeText ? `<div class="activity-time">${timeText}</div>` : '';
     
+    // Check for special activity types - prioritize intro/outro/welcome over challenges/hackathons
+    const titleLower = activity.title.toLowerCase();
+    
+    // More explicit detection
+    const hasChallenge = titleLower.indexOf('challenge') !== -1;
+    const hasHackathon = titleLower.indexOf('hackathon') !== -1;
+    const hasOutro = titleLower.indexOf('outro') !== -1;
+    const hasWelcome = titleLower.indexOf('welcome') !== -1;
+    const hasIntro = titleLower.indexOf(' intro ') !== -1 || titleLower.startsWith('intro ') || titleLower.endsWith(' intro');
+    
+    // Explicit IBM challenges
+    const isIBMChallenge = titleLower.indexOf('ibm quantum') !== -1 && (hasChallenge || titleLower.indexOf('qiskit') !== -1);
+    
+    const isIntroOutroActivity = hasOutro || hasWelcome || hasIntro;
+    const isGoldActivity = (hasChallenge || hasHackathon || isIBMChallenge) && !isIntroOutroActivity;
+    
+    // Debug logging
+    console.log(`Activity: "${activity.title}"`);
+    console.log(`  - hasChallenge: ${hasChallenge}, hasHackathon: ${hasHackathon}, isIBMChallenge: ${isIBMChallenge}`);
+    console.log(`  - isGoldActivity: ${isGoldActivity}, isIntroOutroActivity: ${isIntroOutroActivity}`);
+    
+    let specialClass = '';
+    if (isIntroOutroActivity) {
+        specialClass = ' green-activity';
+        console.log(`  - Applied GREEN class`);
+    } else if (isGoldActivity) {
+        specialClass = ' gold-activity';
+        console.log(`  - Applied GOLD class`);
+    } else {
+        console.log(`  - Applied NO special class`);
+    }
+    
     return `
-        <div class="activity">
+        <div class="activity${specialClass}">
             <div class="activity-content">
                 <div class="activity-title">${activity.title}</div>
                 ${speakerText}

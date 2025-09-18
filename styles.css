@@ -4348,6 +4348,109 @@ section {
     flex: 1; /* Equal flex growth */
     min-width: 0; /* Allow shrinking */
     max-width: none; /* Remove max width constraints */
+    box-sizing: border-box;
+}
+
+/* Time Separator Styles */
+.time-separator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 0.5rem;
+    margin: 0.25rem 0;
+    position: relative;
+    min-height: 60px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 8px;
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.separator-line {
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    right: 1rem;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.2) 20%, 
+        rgba(255, 255, 255, 0.4) 50%, 
+        rgba(255, 255, 255, 0.2) 80%, 
+        transparent 100%);
+}
+
+.separator-label {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.8rem;
+    font-style: italic;
+    background: rgba(26, 26, 46, 0.8);
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 2;
+    position: relative;
+}
+
+.separator-time {
+    font-size: 0.7rem;
+    opacity: 0.7;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.separator-resume {
+    font-size: 0.75rem;
+    opacity: 0.8;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 0.25rem;
+}
+
+/* Week-specific separator colors */
+.week1-quantum .separator-line {
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(59, 130, 246, 0.3) 20%, 
+        rgba(59, 130, 246, 0.5) 50%, 
+        rgba(59, 130, 246, 0.3) 80%, 
+        transparent 100%);
+}
+
+.week1-quantum .separator-label {
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    color: rgba(240, 249, 255, 0.8);
+}
+
+.week2-quantum .separator-line {
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(139, 92, 246, 0.3) 20%, 
+        rgba(139, 92, 246, 0.5) 50%, 
+        rgba(139, 92, 246, 0.3) 80%, 
+        transparent 100%);
+}
+
+.week2-quantum .separator-label {
+    background: rgba(139, 92, 246, 0.1);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    color: rgba(250, 245, 255, 0.8);
+}
+
+.week3-quantum .separator-line {
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(245, 158, 11, 0.3) 20%, 
+        rgba(245, 158, 11, 0.5) 50%, 
+        rgba(245, 158, 11, 0.3) 80%, 
+        transparent 100%);
+}
+
+.week3-quantum .separator-label {
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.2);
+    color: rgba(255, 251, 235, 0.8);
 }
 
 /* REMOVED time-column CSS that was causing 6th column issues
@@ -4412,7 +4515,7 @@ section {
 
 /* Hour Slots - Fixed time positions */
 .hour-slot {
-    height: 120px;
+    height: 120px; /* Reduced back to 120px for better proportion */
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     padding: 0.5rem;
     display: flex;
@@ -4420,7 +4523,7 @@ section {
     justify-content: center;
     position: relative;
     transition: all 0.3s ease;
-    min-height: 120px;
+    min-height: 120px; /* Updated to match height */
 }
 
 /* Multi-hour event support - SIMPLE FOR ALL */
@@ -4472,6 +4575,7 @@ section {
 /* Activity in hour slot - SIMPLE FOR ALL WEEKS */
 .activity {
     width: 100%;
+    /* Removed min-width to match slot width exactly */
     height: 100%;
     background: #2a2a2a;
     border: 1px solid #444444;
@@ -6113,4 +6217,62 @@ section {
         height: 30px;
         font-size: 0.9rem;
     }
+}
+
+/* Challenges and Hackathons - GOLD theme (applies regardless of week) */
+.gold-activity {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.3) 0%, rgba(217, 119, 6, 0.4) 100%) !important;
+    border: 1px solid rgba(245, 158, 11, 0.3) !important;
+    color: #e0e0e0 !important;
+    backdrop-filter: blur(10px);
+}
+
+.gold-activity:hover {
+    background: linear-gradient(135deg, rgba(217, 119, 6, 0.4) 0%, rgba(180, 83, 9, 0.5) 100%) !important;
+    border-color: rgba(245, 158, 11, 0.5) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
+}
+
+.gold-activity .activity-title {
+    color: #fffbeb !important;
+    font-weight: 500;
+}
+
+.gold-activity .activity-speaker {
+    color: rgba(255, 251, 235, 0.7) !important;
+}
+
+.gold-activity .activity-time {
+    color: rgba(245, 158, 11, 0.8) !important;
+    background: rgba(245, 158, 11, 0.15) !important;
+}
+
+/* Outro & Hackathon Winners Day - GREEN theme */
+.green-activity {
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.3) 0%, rgba(22, 163, 74, 0.4) 100%) !important;
+    border: 1px solid rgba(34, 197, 94, 0.3) !important;
+    color: #e0e0e0 !important;
+    backdrop-filter: blur(10px);
+}
+
+.green-activity:hover {
+    background: linear-gradient(135deg, rgba(22, 163, 74, 0.4) 0%, rgba(21, 128, 61, 0.5) 100%) !important;
+    border-color: rgba(34, 197, 94, 0.5) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.2);
+}
+
+.green-activity .activity-title {
+    color: #f0fdf4 !important;
+    font-weight: 500;
+}
+
+.green-activity .activity-speaker {
+    color: rgba(240, 253, 244, 0.7) !important;
+}
+
+.green-activity .activity-time {
+    color: rgba(34, 197, 94, 0.8) !important;
+    background: rgba(34, 197, 94, 0.15) !important;
 }
