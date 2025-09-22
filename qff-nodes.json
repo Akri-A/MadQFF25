@@ -1,0 +1,43 @@
+{
+  "nodes": [
+    {
+      "region": "Europe",
+      "name": "Madrid Quantum Fall Fest",
+      "institution": "UAM - Universidad Autónoma de Madrid",
+      "city": "Madrid",
+      "country": "Spain",
+      "coordinates": {
+        "lat": 40.4168,
+        "lng": -3.7038
+      },
+      "participants": 150,
+      "status": "Active"
+    },
+    {
+      "region": "Europe",
+      "name": "Barcelona Quantum Hub",
+      "institution": "ICFO",
+      "city": "Barcelona", 
+      "country": "Spain",
+      "coordinates": {
+        "lat": 41.3851,
+        "lng": 2.1734
+      },
+      "participants": 85,
+      "status": "Active"
+    },
+    {
+      "region": "Europe",
+      "name": "IBM Quantum Network",
+      "institution": "IBM Research",
+      "city": "Zurich",
+      "country": "Switzerland", 
+      "coordinates": {
+        "lat": 47.3769,
+        "lng": 8.5417
+      },
+      "participants": 200,
+      "status": "Active"
+    }
+  ]
+}
