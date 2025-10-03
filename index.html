@@ -12,8 +12,11 @@
     <link rel="shortcut icon" type="image/png" href="Fall Fest Graphics/Emojis/Entanglement.png">
     <link rel="apple-touch-icon" href="Fall Fest Graphics/Emojis/Entanglement.png">
     <link rel="stylesheet" href="styles.css">
+    <!-- Preconnect to speed up external resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
@@ -44,7 +47,7 @@
     <section id="home" class="hero">
         <!-- Animated Background -->
         <div class="hero-bg">
-            <img src="Fall Fest Graphics/Illustration Exports/Full_Illustration.png" alt="Quantum Illustration" class="hero-illustration">
+            <img src="Fall Fest Graphics/Illustration Exports/Full_Illustration.png" alt="Quantum Illustration" class="hero-illustration" loading="eager" decoding="async">
             <div class="quantum-particles"></div>
             <div class="quantum-grid"></div>
         </div>
@@ -65,7 +68,7 @@
             <!-- Enhanced Badge Section -->
             <div class="hero-badge-section">
                 <div class="hero-badge">
-                    <img src="Fall Fest Graphics/Badge/Badge.png" alt="QFF Badge" class="badge-img">
+                    <img src="Fall Fest Graphics/Badge/Badge.png" alt="QFF Badge" class="badge-img" loading="lazy" decoding="async">
                     <div class="badge-glow"></div>
                 </div>
                 <div class="hero-dates">
@@ -89,8 +92,8 @@
                     </span>
                     <small class="hero-subtitle-org">
                         <span class="org-prefix">organized by</span>
-                        <a href="https://uam-cpra.github.io/" target="_blank">
-                            <img src="CPrA.png" alt="CPrA" class="org-logo" style="height: 6.5em;">
+                        <a href="https://uam-cpra.github.io/" target="_blank" rel="noopener">
+                            <img src="CPrA.png" alt="CPrA" class="org-logo" style="height: 6.5em;" loading="lazy" decoding="async">
                         </a>
                         <span class="org-name">UAM - CPrA</span>
                     </small>
@@ -154,72 +157,198 @@
     <!-- Sponsors & Partners Section -->
     <section id="sponsors" class="sponsors-section">
         <div class="container">
-            <div class="sponsors-grid">
-                <!-- Logo versions (shown when SHOW_SPONSOR_LOGOS = true) -->
-                <div class="sponsor-item logo-version">
-                    <img src="logos/IBM Quantum Logo.png" alt="IBM Quantum" class="sponsor-logo">
-                </div>
-                <div class="sponsor-item logo-version">
-                    <img src="logos/kipu.png" alt="Kipu Quantum" class="sponsor-logo">
-                </div>
-                <div class="sponsor-item logo-version">
-                    <img src="logos/qworld.png" alt="QWorld" class="sponsor-logo">
-                </div>
-                <div class="sponsor-item logo-version">
-                    <img src="logos/pasqal.png" alt="Pasqal" class="sponsor-logo">
-                </div>
-                <div class="sponsor-item logo-version">
-                    <img src="logos/sparrow.png" alt="Sparrow Quantum" class="sponsor-logo">
-                </div>
-                <div class="sponsor-item logo-version">
-                    <img src="logos/imdeaSofware.png" alt="IMDEA Software" class="sponsor-logo">
-                </div>
-                <div class="sponsor-item logo-version">
-                    <img src="logos/multiverse.png" alt="IFF" class="sponsor-logo">
-                </div>
-                <div class="sponsor-item logo-version">
-                    <img src="logos/icmm.png" alt="ICMM" class="sponsor-logo">
-                </div>
-                <div class="sponsor-item logo-version">
-                    <img src="logos/iff.png" alt="IFF" class="sponsor-logo">
+            <h2 class="section-title" style="text-align: center; margin-bottom: 3rem; font-size: 2rem; color: var(--text-primary);">
+                Contributors to MadQFF'25
+            </h2>
+            <div class="contributors-grid">
+                <!-- Román Orús -->
+                <div class="contributor-card">
+                    <div class="contributor-avatar">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div class="contributor-name">Román Orús</div>
+                    <div class="contributor-company">Multiverse Computing</div>
                 </div>
 
+                <!-- Ismael Faro -->
+                <div class="contributor-card">
+                    <div class="contributor-avatar">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div class="contributor-name">Ismael Faro</div>
+                    <div class="contributor-company">IBM Research</div>
+                </div>
 
-                <!-- Text versions (shown when SHOW_SPONSOR_LOGOS = false) -->
-                <div class="sponsor-item text-version" style="display: none;">
-                    <span class="sponsor-text">IBM Quantum</span>
+                <!-- Claudia Zendejas-Morales -->
+                <div class="contributor-card">
+                    <div class="contributor-avatar">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div class="contributor-name">Claudia Zendejas-Morales</div>
+                    <div class="contributor-company">QWorld / CPrA Associate</div>
                 </div>
-                <div class="sponsor-item text-version" style="display: none;">
-                    <span class="sponsor-text">Kipu Quantum</span>
+
+                <!-- Alejandro Gómez Cadavid -->
+                <div class="contributor-card">
+                    <div class="contributor-avatar">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div class="contributor-name">Alejandro Gómez Cadavid</div>
+                    <div class="contributor-company">Kipu Quantum</div>
                 </div>
-                <div class="sponsor-item text-version" style="display: none;">
-                    <span class="sponsor-text">QWorld</span>
+
+                <!-- Victor Onofre -->
+                <div class="contributor-card">
+                    <div class="contributor-avatar">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div class="contributor-name">Victor Onofre</div>
+                    <div class="contributor-company">Pasqal</div>
                 </div>
-                <div class="sponsor-item text-version" style="display: none;">
-                    <span class="sponsor-text">Pasqal</span>
+
+                <!-- Oliver Luscombe Norregaard -->
+                <div class="contributor-card">
+                    <div class="contributor-avatar">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div class="contributor-name">Oliver Luscombe Norregaard</div>
+                    <div class="contributor-company">Sparrow Quantum</div>
                 </div>
-                <div class="sponsor-item text-version" style="display: none;">
-                    <span class="sponsor-text">Sparrow Quantum</span>
+
+                <!-- Farzam Nosrati -->
+                <div class="contributor-card">
+                    <div class="contributor-avatar">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div class="contributor-name">Farzam Nosrati</div>
+                    <div class="contributor-company">IMDEA Software Institute</div>
                 </div>
-                <div class="sponsor-item text-version" style="display: none;">
-                    <span class="sponsor-text">IMDEA Software</span>
+
+                <!-- David Rincón -->
+                <div class="contributor-card">
+                    <div class="contributor-avatar">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div class="contributor-name">David Rincón</div>
+                    <div class="contributor-company">REDIMadrid / Giicc Upm</div>
                 </div>
-                <div class="sponsor-item text-version" style="display: none;">
-                    <span class="sponsor-text">Multiverse Computing</span>
+
+                <!-- Vicente Martín -->
+                <div class="contributor-card">
+                    <div class="contributor-avatar">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div class="contributor-name">Vicente Martín</div>
+                    <div class="contributor-company">Giicc Upm</div>
                 </div>
-                <div class="sponsor-item text-version" style="display: none;">
-                    <span class="sponsor-text">ICMM</span>
+
+                <!-- César Sánchez -->
+                <div class="contributor-card">
+                    <div class="contributor-avatar">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div class="contributor-name">César Sánchez</div>
+                    <div class="contributor-company">REDIMadrid / Giicc Upm</div>
                 </div>
-                <div class="sponsor-item text-version" style="display: none;">
-                    <span class="sponsor-text">IFF</span>
+
+                <!-- César Benito -->
+                <div class="contributor-card">
+                    <div class="contributor-avatar">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div class="contributor-name">César Benito</div>
+                    <div class="contributor-company">IFT Madrid</div>
+                </div>
+
+                <!-- Yue Ban -->
+                <div class="contributor-card">
+                    <div class="contributor-avatar">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div class="contributor-name">Yue Ban</div>
+                    <div class="contributor-company">ICMM - CSIC</div>
+                </div>
+
+                <!-- Xi Cheng -->
+                <div class="contributor-card">
+                    <div class="contributor-avatar">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div class="contributor-name">Xi Cheng</div>
+                    <div class="contributor-company">ICMM - CSIC</div>
+                </div>
+
+                <!-- ICFO -->
+                <div class="contributor-card">
+                    <div class="contributor-avatar">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div class="contributor-name">ICFO</div>
+                    <div class="contributor-company">Institut de Ciències Fotòniques</div>
+                </div>
+
+                <!-- Juan David de los Rios Mahecha -->
+                <div class="contributor-card">
+                    <div class="contributor-avatar">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div class="contributor-name">Juan David de los Rios Mahecha</div>
+                    <div class="contributor-company">CPrA Associate</div>
                 </div>
             </div>
-            <br>
-            <div class="sponsors-legal-notice"></div>
-                <p class="legal-text">
-                    <i class="fas fa-info-circle"></i>
-                    Right now we don't have the legal permission to put their logos here hehehe :(
-                </p>
+
+            <!-- Coordinators Section -->
+            <div class="coordinators-section">
+                <h3 class="coordinators-title">
+                    <i class="fas fa-users-cog"></i>
+                    MadQFF'25 Coordinators
+                </h3>
+                <div class="coordinators-grid">
+                    <!-- Enrique Anguiano-Vara -->
+                    <div class="coordinator-card">
+                        <div class="coordinator-avatar">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div class="coordinator-name">Enrique Anguiano-Vara</div>
+                        <div class="coordinator-role">Lead Organizer</div>
+                    </div>
+
+                    <!-- Anna Kristha Almazán Favela -->
+                    <div class="coordinator-card">
+                        <div class="coordinator-avatar">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div class="coordinator-name">Anna Kristha Almazán Favela</div>
+                        <div class="coordinator-role">Co-organizer</div>
+                    </div>
+
+                    <!-- Abdullah Al Omar Galib -->
+                    <div class="coordinator-card">
+                        <div class="coordinator-avatar">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div class="coordinator-name">Abdullah Al Omar Galib</div>
+                        <div class="coordinator-role">Co-organizer</div>
+                    </div>
+
+                    <!-- Adriana Prat Bosch -->
+                    <div class="coordinator-card">
+                        <div class="coordinator-avatar">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div class="coordinator-name">Adriana Prat Bosch</div>
+                        <div class="coordinator-role">Co-organizer</div>
+                    </div>
+
+                    <!-- Enrique Sánchez Ibáñez -->
+                    <div class="coordinator-card">
+                        <div class="coordinator-avatar">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div class="coordinator-name">Enrique Sánchez Ibáñez</div>
+                        <div class="coordinator-role">Co-organizer</div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -429,6 +558,8 @@
                                     <div class="date-number">27</div>
                                     <div class="day-glow"></div>
                                 </div>
+                                <div class="hour-slot quantum-slot" id="week1-mon-14" data-time="14:00">
+                                </div>
                                 <div class="hour-slot quantum-slot" id="week1-mon-15" data-time="15:00">
                                 </div>
                                 <div class="hour-slot quantum-slot" id="week1-mon-16" data-time="16:00">
@@ -444,7 +575,7 @@
                                     <div class="date-number">28</div>
                                     <div class="day-glow"></div>
                                 </div>
-                                <div class="hour-slot quantum-slot" id="week1-tue-15" data-time="15:00">
+                                <div class="hour-slot quantum-slot" id="week1-tue-15" data-time="14:00">
 
                                 </div>
                                 <div class="hour-slot quantum-slot" id="week1-tue-16" data-time="16:00">
@@ -460,13 +591,13 @@
                                     <div class="date-number">29</div>
                                     <div class="day-glow"></div>
                                 </div>
+                                <div class="hour-slot quantum-slot" id="week1-wed-14" data-time="14:00">
+
+                                </div>
                                 <div class="hour-slot quantum-slot" id="week1-wed-15" data-time="15:00">
 
                                 </div>
                                 <div class="hour-slot quantum-slot" id="week1-wed-16" data-time="16:00">
-
-                                </div>
-                                <div class="hour-slot quantum-slot" id="week1-wed-17" data-time="17:00">
 
                                 </div>
                             </div>
@@ -476,16 +607,10 @@
                                     <div class="date-number">30</div>
                                     <div class="day-glow"></div>
                                 </div>
-                                <div class="hour-slot quantum-slot" id="week1-thu-14" data-time="14:00">
-
-                                </div>
-                                <div class="hour-slot quantum-slot" id="week1-thu-15" data-time="15:00">
+                                <div class="hour-slot quantum-slot" id="week1-thu-15" data-time="14:00">
 
                                 </div>
                                 <div class="hour-slot quantum-slot" id="week1-thu-16" data-time="16:00">
-
-                                </div>
-                                <div class="hour-slot quantum-slot" id="week1-thu-17" data-time="17:00">
 
                                 </div>
                             </div>
@@ -499,6 +624,10 @@
                                 <div class="hour-slot quantum-slot" id="week1-fri-14" data-time="14:00">
 
                                 </div>
+                                <div class="hour-slot quantum-slot" id="week1-fri-15" data-time="15:00">
+
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -615,9 +744,6 @@
 
                                 </div>
                                 <div class="hour-slot quantum-slot" id="week2-thu-18" data-time="18:00">
-
-                                </div>
-                                <div class="hour-slot quantum-slot" id="week2-thu-19" data-time="19:00">
 
                                 </div>
                             </div>
@@ -781,19 +907,19 @@
                 <!-- Background Elements -->
                 <div class="cta-bg-elements">
                     <div class="floating-element element-2">
-                        <img src="Fall Fest Graphics/Emojis/Circuit.png" alt="Circuit" class="element-icon rotate-animation">
+                        <img src="Fall Fest Graphics/Emojis/Circuit.png" alt="Circuit" class="element-icon rotate-animation" loading="lazy" decoding="async">
                     </div>
                     <div class="floating-element element-3">
-                        <img src="Fall Fest Graphics/Emojis/Entanglement.png" alt="Entanglement" class="element-icon float-animation">
+                        <img src="Fall Fest Graphics/Emojis/Entanglement.png" alt="Entanglement" class="element-icon float-animation" loading="lazy" decoding="async">
                     </div>
                     <div class="floating-element element-4">
-                        <img src="Fall Fest Graphics/Emojis/Atom_01.png" alt="Atom" class="element-icon bounce-animation">
+                        <img src="Fall Fest Graphics/Emojis/Atom_01.png" alt="Atom" class="element-icon bounce-animation" loading="lazy" decoding="async">
                     </div>
                     <div class="floating-element element-5">
-                        <img src="Fall Fest Graphics/Emojis/Badge_01.png" alt="Badge" class="element-icon swing-animation">
+                        <img src="Fall Fest Graphics/Emojis/Badge_01.png" alt="Badge" class="element-icon swing-animation" loading="lazy" decoding="async">
                     </div>
                     <div class="floating-element element-6">
-                        <img src="Fall Fest Graphics/Emojis/Text_Quantum_01.png" alt="Quantum" class="element-icon glow-animation">
+                        <img src="Fall Fest Graphics/Emojis/Text_Quantum_01.png" alt="Quantum" class="element-icon glow-animation" loading="lazy" decoding="async">
                     </div>
                 </div>
 
@@ -901,8 +1027,8 @@
     </footer>
 
     <!-- Leaflet JS -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="script.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+    <script src="script.js" defer></script>
 
     <!-- Sponsor Display Control Script -->
     <script>

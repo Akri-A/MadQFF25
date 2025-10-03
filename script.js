@@ -1891,53 +1891,52 @@ function populateWeeklyCalendar() {
                 const containerId = `${week.prefix}-${dayNames[dayIndex]}-${hour}`;
                 const container = document.getElementById(containerId);
                 
-                if (!container) {
-                    console.log(`📅 Container not found: ${containerId}`);
-                    return; // Skip this iteration
-                }
-                
-                const dayEvents = weeklyCalendarEvents[date] || {};
-                const hourEvent = dayEvents[hour];
-                
-                if (hourEvent) {
-                    console.log(`📅 Adding event to ${containerId}:`, hourEvent);
+                if (container) {
+                    const dayEvents = weeklyCalendarEvents[date] || {};
+                    const hourEvent = dayEvents[hour];
                     
-                    // Use the actual duration from the calendar.ics file
-                    const eventDuration = hourEvent.duration || 1;
-                    
-                    let eventHtml = renderActivityForHour(hourEvent);
-                    
-                    // Apply multi-hour styling if event lasts more than 1 hour
-                    if (eventDuration > 1 && eventDuration <= 3) {
-                        container.style.gridRow = `span ${eventDuration}`;
-                        container.style.minHeight = `${120 * eventDuration}px`;
-                        container.classList.add('multi-hour-event');
+                    if (hourEvent) {
+                        console.log(`📅 Adding event to ${containerId}:`, hourEvent);
                         
-                        // Hide subsequent hour containers to avoid overlap
-                        for (let i = 1; i < eventDuration; i++) {
-                            const nextHour = String(parseInt(hour) + i);
-                            const nextContainerId = `${week.prefix}-${dayNames[dayIndex]}-${nextHour}`;
-                            const nextContainer = document.getElementById(nextContainerId);
-                            if (nextContainer && weekHours.includes(nextHour)) {
-                                nextContainer.style.display = 'none';
-                                nextContainer.setAttribute('data-occupied', 'true');
+                        // Use the actual duration from the calendar.ics file
+                        const eventDuration = hourEvent.duration || 1;
+                        
+                        let eventHtml = renderActivityForHour(hourEvent);
+                        
+                        // Apply multi-hour styling if event lasts more than 1 hour
+                        if (eventDuration > 1 && eventDuration <= 3) {
+                            container.style.gridRow = `span ${eventDuration}`;
+                            container.style.minHeight = `${120 * eventDuration}px`;
+                            container.classList.add('multi-hour-event');
+                            
+                            // Hide subsequent hour containers to avoid overlap
+                            for (let i = 1; i < eventDuration; i++) {
+                                const nextHour = String(parseInt(hour) + i);
+                                const nextContainerId = `${week.prefix}-${dayNames[dayIndex]}-${nextHour}`;
+                                const nextContainer = document.getElementById(nextContainerId);
+                                if (nextContainer && weekHours.includes(nextHour)) {
+                                    nextContainer.style.display = 'none';
+                                    nextContainer.setAttribute('data-occupied', 'true');
+                                }
                             }
                         }
-                    }
-                    
-                    container.innerHTML = eventHtml;
-                    container.style.display = 'block';
-                    container.style.minHeight = `${120 * eventDuration}px`;
-                } else {
-                    // Check if this slot is occupied by a multi-hour event
-                    if (!container.getAttribute('data-occupied')) {
-                        // Leave all weeks empty when no activity
-                        container.innerHTML = '';
-                        container.style.backgroundColor = 'transparent';
-                        container.style.border = 'none';
+                        
+                        container.innerHTML = eventHtml;
                         container.style.display = 'block';
-                        container.style.minHeight = '120px';
+                        container.style.minHeight = `${120 * eventDuration}px`;
+                    } else {
+                        // Check if this slot is occupied by a multi-hour event
+                        if (!container.getAttribute('data-occupied')) {
+                            // Leave all weeks empty when no activity
+                            container.innerHTML = '';
+                            container.style.backgroundColor = 'transparent';
+                            container.style.border = 'none';
+                            container.style.display = 'block';
+                            container.style.minHeight = '120px';
+                        }
                     }
+                } else {
+                    console.warn(`📅 Container not found: ${containerId}`);
                 }
             });
         });
