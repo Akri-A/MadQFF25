@@ -1676,7 +1676,7 @@ function loadHardcodedEvents() {
         },
         '2025-11-05': {
             '16': { title: 'ICFO', speaker: '' }, // 150000Z UTC = 4PM Madrid
-            '17': { title: 'Multiverse Computing', speaker: 'Roman Orus' }, // 160000Z UTC = 5PM Madrid
+            '17': { title: 'EXTRA TIME', speaker: '' }, // 160000Z UTC = 5PM Madrid
             '18': { title: 'GMV', speaker: 'Alexander Benítez Buenache, Antón Makarov, Queralt Portell de Montserrat' }, // 170000Z UTC = 6PM Madrid
             '19': { title: 'EXTRA TIME', speaker: '' } // 180000Z UTC = 7PM Madrid
         },
@@ -1687,6 +1687,7 @@ function loadHardcodedEvents() {
             '19': { title: 'EXTRA TIME', speaker: '' } // 180000Z UTC = 7PM Madrid
         },
         '2025-11-07': {
+            '10': { title: 'Multiverse Computing', speaker: 'Román Orús' }, // 090000Z UTC = 10AM Madrid
             '16': { title: 'QWorld', speaker: 'Claudia Zendeja Morales' }, // 150000Z UTC = 4PM Madrid
             '16.5': { title: 'CPrA, the spanish QCousin', speaker: '' }, // 153000Z UTC = 4:30PM Madrid
             '17': { title: 'IBM Quantum', speaker: 'Ismael Faro' }, // 160000Z UTC = 5PM Madrid
