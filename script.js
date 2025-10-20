@@ -1665,7 +1665,7 @@ function loadHardcodedEvents() {
         '2025-11-03': {
             '16': { title: 'Pasqal', speaker: 'Victor Onofre' }, // 150000Z UTC = 4PM Madrid
             '17': { title: 'Sparrow Quantum', speaker: 'Oliver Luscombe Nørregaard' }, // 160000Z UTC = 5PM Madrid
-            '18': { title: 'Quandela', speaker: '' }, // 170000Z UTC = 6PM Madrid
+            '18': { title: 'Quandela', speaker: 'Alexia Salavrakos' }, // 170000Z UTC = 6PM Madrid
             '19': { title: 'EXTRA TIME', speaker: '' } // 180000Z UTC = 7PM Madrid
         },
         '2025-11-04': {
@@ -1676,8 +1676,8 @@ function loadHardcodedEvents() {
         },
         '2025-11-05': {
             '16': { title: 'ICFO', speaker: '' }, // 150000Z UTC = 4PM Madrid
-            '17': { title: 'EXTRA TIME', speaker: '' }, // 160000Z UTC = 5PM Madrid
-            '18': { title: 'GMV', speaker: 'Alexander Benítez Buenache, Antón Makarov, Queralt Portell de Montserrat' }, // 170000Z UTC = 6PM Madrid
+            '17': { title: 'ICFO', speaker: 'Antonio Acín' }, // 160000Z UTC = 5PM Madrid
+            '18': { title: 'UPV', speaker: 'Helen Urgelles Pérez' }, // 170000Z UTC = 6PM Madrid
             '19': { title: 'EXTRA TIME', speaker: '' } // 180000Z UTC = 7PM Madrid
         },
         '2025-11-06': {
@@ -2015,3 +2015,4 @@ function initializeWeeklyCalendar() {
 
 // Initialize weekly calendar functionality on page load
 console.log('📅 Weekly calendar system ready for MadQFF\'25');
+
